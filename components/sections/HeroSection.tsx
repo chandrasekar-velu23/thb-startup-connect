@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { ChevronDown } from "lucide-react";
 import Button from "@/components/common/Button";
 import Container from "@/components/common/Container";
 import RegistrationModal from "@/components/common/RegistrationModal";
@@ -20,60 +21,81 @@ export default function HeroSection() {
     }
   ];
 
+  const contentRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const handleOpen = () => setIsModalOpen(true);
     window.addEventListener('open-registration', handleOpen);
 
     const bgInterval = setInterval(() => {
       setCurrentBg((prev) => (prev + 1) % slides.length);
-    }, 5000); // Shift background every 5 seconds
+    }, 5000);
+
+    // Auto-scroll on mobile after 2 seconds
+    const scrollTimer = setTimeout(() => {
+      const isMobile = window.innerWidth < 768;
+      if (isMobile && contentRef.current) {
+        contentRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }, 2000);
 
     return () => {
       window.removeEventListener('open-registration', handleOpen);
       clearInterval(bgInterval);
+      clearTimeout(scrollTimer);
     };
   }, []);
 
+  const scrollToContent = () => {
+    contentRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   return (
     <>
-      <section
-        className="min-h-[100dvh] flex items-center pt-60 md:pt-20 pb-10 relative overflow-hidden bg-white"
-      >
-        {/* Background Slideshow */}
-        {slides.map((slide, index) => (
-          <div
-            key={index}
-            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentBg ? "opacity-100" : "opacity-0"
-              }`}
-          >
-            {/* Desktop Background */}
+      <section className="flex flex-col md:block relative bg-slate-950 overflow-hidden">
+        {/* Background Slideshow Part */}
+        <div className="relative h-[80vh] md:h-screen md:absolute md:inset-0 overflow-hidden">
+          {slides.map((slide, index) => (
             <div
-              className="hidden md:block absolute inset-0 bg-cover bg-center md:bg-fixed"
-              style={{ backgroundImage: `url('${slide.bgDesktop}')` }}
-            />
-            {/* Mobile Background */}
-            <div
-              className="md:hidden absolute inset-0 bg-cover "
-              style={{
-                backgroundImage: `url('${slide.bgMobile}')`,
-                backgroundPosition: 'center 80%'
-              }}
-            />
+              key={index}
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentBg ? "opacity-100" : "opacity-0"
+                }`}
+            >
+              <div
+                className="hidden md:block absolute inset-0 bg-cover bg-center md:bg-fixed"
+                style={{ backgroundImage: `url('${slide.bgDesktop}')` }}
+              />
+              <div
+                className="md:hidden absolute inset-0 bg-cover"
+                style={{
+                  backgroundImage: `url('${slide.bgMobile}')`,
+                  backgroundPosition: 'center 80%'
+                }}
+              />
+            </div>
+          ))}
+
+          {/* Dark overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/90 md:bg-black/40"></div>
+
+          {/* Scroll Down Button (Mobile Only) */}
+          <div className="md:hidden absolute bottom-12 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-3">
+            <span className="text-white/40 text-[10px] tracking-[0.3em] font-montserrat uppercase">Explore</span>
+            <button
+              onClick={scrollToContent}
+              className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center animate-bounce bg-white/5 backdrop-blur-sm"
+            >
+              <ChevronDown className="text-white w-6 h-6" strokeWidth={1.5} />
+            </button>
           </div>
-        ))}
-
-        {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/80 md:bg-black/40 md:bg-none"></div>
-
-        {/* Animated background elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl"></div>
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl"></div>
         </div>
 
-        {/* Adjusted Container with margin shift left side */}
-        <Container size="xl" className="relative z-10 w-full pl-0 ml-10 md:ml-[12.5rem] pt-16 flex-1 mr-auto transition-all">
-          <div className="flex w-full min-h-[100dvh] pt-[60vh] pb-16 md:pt-0 md:pb-0 items-start md:items-center text-left">
+        {/* Content Part */}
+        <Container size="xl" className="relative z-10 w-full pl-0 ml-10 md:ml-[12.5rem] md:pt-16 flex-1 mr-auto transition-all">
+          <div
+            ref={contentRef}
+            className="flex w-full min-h-[50vh] md:min-h-screen pt-16 pb-20 md:pt-0 md:pb-0 items-start md:items-center text-left transition-all scroll-mt-24"
+          >
             {/* Main Content Width Wrapper */}
             <div className="w-full lg:w-[85%] xl:w-[75%] max-w-5xl flex flex-col gap-6 md:gap-8 pr-4 lg:pr-12">
 
