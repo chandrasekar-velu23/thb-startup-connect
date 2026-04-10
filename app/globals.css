@@ -1,0 +1,523 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== COLOR PALETTE ===== */
+:root {
+  /* Primary Colors */
+  --background: #ffffff;
+  --foreground: #000000;
+  --color-primary: #C92515;
+  --color-black: #000000;
+  --color-white: #ffffff;
+
+  /* Gray Scale */
+  --color-dark-grey: #2C2E35;
+  --color-mid-grey: #4b5563;
+  --color-light-grey: #e5e7eb;
+
+  /* Font Families */
+  --font-poppins: var(--font-poppins);
+  --font-montserrat: var(--font-montserrat);
+  --font-univia: var(--font-univia);
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+/* ===== BASE STYLES ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-montserrat), -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== TYPOGRAPHY ===== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-poppins);
+  font-weight: 700;
+  color: var(--color-black);
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.75rem;
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+p {
+  font-family: var(--font-montserrat);
+  color: var(--color-dark-grey);
+  line-height: 1.6;
+}
+
+.text-body {
+  font-family: var(--font-montserrat);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--color-dark-grey);
+  line-height: 1.6;
+}
+
+.text-small {
+  font-family: var(--font-montserrat);
+  font-size: 0.875rem;
+  color: var(--color-dark-grey);
+}
+
+.text-badge {
+  font-family: var(--font-montserrat);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+/* ===== SCROLLBAR STYLING ===== */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-light-grey);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-mid-grey);
+}
+
+/* ===== SELECTION ===== */
+::selection {
+  background: var(--color-primary);
+  color: white;
+}
+
+/* ===== INTERACTIVE ELEMENTS ===== */
+a,
+button,
+input,
+select,
+textarea {
+  transition: all 0.3s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(201, 37, 21, 0.1);
+}
+
+/* ===== CAROUSEL SCROLLBAR HIDING ===== */
+.carousel-hide-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.carousel-hide-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* ===== ANIMATIONS ===== */
+
+/* Mentorship Carousel Scroll */
+@keyframes scroll-mentor {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50% - 12px));
+  }
+}
+
+.animate-scroll-mentor {
+  animation: scroll-mentor 40s linear infinite;
+  width: max-content;
+}
+
+.group\/slider:hover .animate-scroll-mentor {
+  animation-play-state: paused;
+}
+
+/* Fade In Up */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Zoom In Animation */
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.zoom-in {
+  animation: zoomIn 0.3s ease-out;
+}
+
+/* Fade In */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* ===== COMPONENT UTILITIES ===== */
+
+/* Card Base Styling */
+.card-base {
+  background: var(--color-white);
+  border: 1px solid var(--color-light-grey);
+  border-radius: 1rem;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.card-base:hover {
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+}
+
+/* Button Base */
+.btn-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-montserrat);
+  font-weight: 600;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #a01f11;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(201, 37, 21, 0.3);
+}
+
+.btn-secondary {
+  background: var(--color-light-grey);
+  color: var(--color-black);
+}
+
+.btn-secondary:hover {
+  background: var(--color-mid-grey);
+  color: white;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+}
+
+.btn-outline:hover {
+  background: var(--color-primary);
+  color: white;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-primary);
+}
+
+.btn-ghost:hover {
+  background: rgba(201, 37, 21, 0.1);
+}
+
+/* Container Sizing */
+.container-xs {
+  max-width: 20rem;
+}
+
+.container-sm {
+  max-width: 24rem;
+}
+
+.container-md {
+  max-width: 28rem;
+}
+
+.container-lg {
+  max-width: 32rem;
+}
+
+.container-xl {
+  max-width: 36rem;
+}
+
+.container-2xl {
+  max-width: 42rem;
+}
+
+/* Spacing Utilities */
+.spacing-xs {
+  padding: 0.25rem;
+}
+
+.spacing-sm {
+  padding: 0.5rem;
+}
+
+.spacing-md {
+  padding: 1rem;
+}
+
+.spacing-lg {
+  padding: 1.5rem;
+}
+
+.spacing-xl {
+  padding: 2rem;
+}
+
+.spacing-2xl {
+  padding: 3rem;
+}
+
+/* Border Radius Utilities */
+.rounded-xs {
+  border-radius: 0.5rem;
+}
+
+.rounded-sm {
+  border-radius: 0.75rem;
+}
+
+.rounded-md {
+  border-radius: 1rem;
+}
+
+.rounded-lg {
+  border-radius: 1.25rem;
+}
+
+.rounded-xl {
+  border-radius: 1.5rem;
+}
+
+.rounded-2xl {
+  border-radius: 1.75rem;
+}
+
+.rounded-3xl {
+  border-radius: 2rem;
+}
+
+/* Shadow Utilities */
+.shadow-light {
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+}
+
+.shadow-medium {
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+.shadow-lg {
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+}
+
+.shadow-xl {
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+}
+
+/* Backdrop Effects */
+.backdrop-blur {
+  backdrop-filter: blur(12px);
+}
+
+.backdrop-blur-sm {
+  backdrop-filter: blur(4px);
+}
+
+/* Color Overlay Utilities */
+.overlay-light {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.overlay-medium {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.overlay-dark {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.overlay-darkest {
+  background: rgba(0, 0, 0, 0.95);
+}
+
+/* Text Gradient */
+.text-gradient {
+  background: linear-gradient(to right, #C92515, #000000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Z-Index Hierarchy */
+.z-base {
+  z-index: auto;
+}
+
+.z-overlay-edge {
+  z-index: 10;
+}
+
+.z-card-content {
+  z-index: 20;
+}
+
+.z-modal-bg {
+  z-index: 100;
+}
+
+.z-modal-close {
+  z-index: 110;
+}
+
+/* Responsive Padding for Carousels */
+.carousel-padding-base {
+  margin-left: -1.5rem;
+  margin-right: -1.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .carousel-padding-base {
+    margin-left: -3rem;
+    margin-right: -3rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .carousel-padding-base {
+    margin-left: -6rem;
+    margin-right: -6rem;
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
+}
+
+/* Glass/Frosted Effect */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Smooth Scroll */
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+/* Cursor States */
+.cursor-interactive {
+  cursor: pointer;
+}
+
+.cursor-grabbing {
+  cursor: grabbing;
+}
+
+/* Image Hover Effects */
+.image-hover-scale {
+  transition: transform 0.5s ease;
+}
+
+.image-hover-scale:hover {
+  transform: scale(1.05);
+}
+
+/* Scale variations */
+.scale-hover-105:hover {
+  transform: scale(1.05);
+}
+
+.scale-hover-110:hover {
+  transform: scale(1.1);
+}
+
+/* Transition Timings */
+.transition-fast {
+  transition-duration: 200ms;
+}
+
+.transition-normal {
+  transition-duration: 300ms;
+}
+
+.transition-slow {
+  transition-duration: 500ms;
+}
+
+.transition-slowest {
+  transition-duration: 700ms;
+}
