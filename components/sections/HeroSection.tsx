@@ -91,7 +91,7 @@ export default function HeroSection() {
         </div>
 
         {/* Content Part */}
-        <Container size="xl" className="relative z-10 w-full pl-0 ml-10 md:ml-[12.5rem] md:pt-16 flex-1 mr-auto transition-all">
+        <Container size="xl" className="relative z-10 w-full pl-5 ml-5 md:ml-[12.5rem] md:pt-16 pt-5 flex-1 mr-auto transition-all">
           <div
             ref={contentRef}
             className="flex w-full min-h-[50vh] md:min-h-screen pt-16 pb-20 md:pt-0 md:pb-0 items-start md:items-center text-left transition-all scroll-mt-24"
@@ -129,7 +129,7 @@ export default function HeroSection() {
                   <p className="text-white text-lg font-semibold font-poppins mt-2">
                     Sunday, May 3rd, 2026
                   </p>
-                  <p className="text-white/70 text-sm font-montserrat mt-1">6:00 PM – 7:30 PM IST</p>
+                  <p className="text-white/70 text-sm font-montserrat mt-1">6:00 PM – 8:00 PM</p>
                 </div>
                 <div className="hidden sm:block w-px bg-gradient-to-b from-transparent via-white/30 to-transparent"></div>
                 <div className="flex-1">
