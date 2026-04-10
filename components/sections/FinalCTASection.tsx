@@ -20,7 +20,7 @@ export default function FinalCTASection() {
           <div className="max-w-3xl mx-auto text-center space-y-12">
             {/* Main statement */}
             <div className="space-y-6">
-              <h2 className="text-4xl md:text-6xl font-bold text-black leading-tight font-poppins">
+              <h2 className="text-4xl md:text-6xl font-bold text-black leading-tight font-univia">
                 Here's the Truth
               </h2>
               <p className="text-xl md:text-2xl text-black font-montserrat">
@@ -39,7 +39,7 @@ export default function FinalCTASection() {
                   <p className="text-black text-xs uppercase tracking-wider font-semibold">
                     Event Date
                   </p>
-                  <p className="text-3xl md:text-2xl font-bold text-primary font-poppins mt-2">
+                  <p className="text-3xl md:text-2xl font-bold text-primary font-univia mt-2">
                     May 3rd
                   </p>
                 </div>
@@ -48,7 +48,7 @@ export default function FinalCTASection() {
                   <p className="text-black text-xs uppercase tracking-wider font-semibold">
                     Time
                   </p>
-                  <p className="text-3xl md:text-2xl font-bold text-primary font-poppins mt-2">
+                  <p className="text-3xl md:text-2xl font-bold text-primary font-univia mt-2">
                     6:00 - 8:00 PM IST
                   </p>
                 </div>
@@ -57,7 +57,7 @@ export default function FinalCTASection() {
                   <p className="text-black text-xs uppercase tracking-wider font-semibold">
                     Duration
                   </p>
-                  <p className="text-3xl md:text-2xl font-bold text-primary font-poppins mt-2">
+                  <p className="text-3xl md:text-2xl font-bold text-primary font-univia mt-2">
                     2 hours
                   </p>
                 </div>

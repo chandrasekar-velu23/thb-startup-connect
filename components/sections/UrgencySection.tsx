@@ -8,7 +8,7 @@ export default function UrgencySection() {
     <section className="py-16 md:py-24 bg-white font-montserrat">
       <Container>
         <div className="space-y-12">
-          <h2 className="text-3xl md:text-5xl font-bold text-black text-center font-poppins">
+          <h2 className="text-3xl md:text-5xl font-bold text-black text-center font-univia">
             This is Exclusive
           </h2>
 
@@ -22,7 +22,7 @@ export default function UrgencySection() {
                   <Lock className="w-8 h-8 flex-shrink-0" strokeWidth={2} />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-black mb-3 font-poppins group-hover:scale-105 transition-transform duration-300">
+                  <h3 className="text-xl font-bold text-black mb-3 font-univia group-hover:scale-105 transition-transform duration-300">
                     Closed-door Session
                   </h3>
                   <p className="text-sm md:text-base text-neutral-600 leading-relaxed">
@@ -45,7 +45,7 @@ export default function UrgencySection() {
                   </span>
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-black mb-3 font-poppins group-hover:scale-105 transition-transform duration-300 group-hover:text-amber-600">
+                  <h3 className="text-xl font-bold text-black mb-3 font-univia group-hover:scale-105 transition-transform duration-300 group-hover:text-amber-600">
                     Limited Seats
                   </h3>
                   <p className="text-sm md:text-base text-neutral-600 leading-relaxed">
@@ -64,7 +64,7 @@ export default function UrgencySection() {
                   <Ban className="w-8 h-8 flex-shrink-0 group-hover:animate-pulse" strokeWidth={2} />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-black mb-3 font-poppins group-hover:scale-105 transition-transform duration-300 group-hover:text-red-500">
+                  <h3 className="text-xl font-bold text-black mb-3 font-univia group-hover:scale-105 transition-transform duration-300 group-hover:text-red-500">
                     No Replays. No Second Batch.
                   </h3>
                   <p className="text-sm md:text-base text-neutral-600 leading-relaxed">
@@ -81,7 +81,7 @@ export default function UrgencySection() {
             <p className="text-xl text-black">
               If you're serious about building something real,
             </p>
-            <p className="text-2xl md:text-3xl font-bold text-primary mt-4 font-poppins">
+            <p className="text-2xl md:text-3xl font-bold text-primary mt-4 font-univia">
               this session is for you.
             </p>
             <p className="text-lg text-black mt-6">

@@ -21,11 +21,11 @@ export default function WhyMattersSection() {
               <Zap className="w-4 h-4" />
               The Reality
             </div> */}
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black font-poppins tracking-tight">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black font-univia tracking-tight">
               Why This Matters
             </h2>
             <div className="w-24 h-1.5 bg-primary mx-auto rounded-full"></div>
-            <p className="text-xl md:text-2xl text-grey font-poppins leading-relaxed pt-4">
+            <p className="text-xl md:text-2xl text-grey font-univia leading-relaxed pt-4">
               You don't need another idea.
               <br className="hidden md:block" />
               You need the <span className="text-primary font-bold relative inline-block group cursor-default">
@@ -53,11 +53,11 @@ export default function WhyMattersSection() {
                 <div className="relative z-10 flex flex-col gap-8">
                   {/* Item: Starting is easy */}
                   <div className="flex flex-col sm:flex-row gap-5 items-start sm:items-center">
-                    <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-light-grey flex items-center justify-center text-black font-bold text-xl font-poppins transition-all duration-300 group-hover:bg-primary/20 group-hover:text-primary group-hover:rotate-3 group-hover:shadow-lg group-hover:shadow-primary/10">
+                    <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-light-grey flex items-center justify-center text-black font-bold text-xl font-univia transition-all duration-300 group-hover:bg-primary/20 group-hover:text-primary group-hover:rotate-3 group-hover:shadow-lg group-hover:shadow-primary/10">
                       1
                     </div>
                     <div>
-                      <h4 className="text-xl font-bold text-black font-poppins mb-2 transition-colors duration-500 group-hover:text-primary">Starting is easy</h4>
+                      <h4 className="text-xl font-bold text-black font-univia mb-2 transition-colors duration-500 group-hover:text-primary">Starting is easy</h4>
                       <p className="text-grey text-sm md:text-base font-montserrat leading-relaxed max-w-md">
                         Anyone can launch a startup. The barrier to entry is almost zero.
                       </p>
@@ -71,11 +71,11 @@ export default function WhyMattersSection() {
 
                   {/* Item: Sustaining is everything */}
                   <div className="flex flex-col sm:flex-row gap-5 items-start sm:items-center">
-                    <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-light-grey flex items-center justify-center text-black font-bold text-xl font-poppins transition-all duration-300 group-hover:bg-primary/20 group-hover:text-primary group-hover:rotate-3 group-hover:shadow-lg group-hover:shadow-primary/10">
+                    <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-light-grey flex items-center justify-center text-black font-bold text-xl font-univia transition-all duration-300 group-hover:bg-primary/20 group-hover:text-primary group-hover:rotate-3 group-hover:shadow-lg group-hover:shadow-primary/10">
                       2
                     </div>
                     <div>
-                      <h4 className="text-xl font-bold text-black font-poppins mb-2 transition-colors duration-500 group-hover:text-primary">
+                      <h4 className="text-xl font-bold text-black font-univia mb-2 transition-colors duration-500 group-hover:text-primary">
                         Sustaining is everything
                       </h4>
                       <p className="text-grey text-sm md:text-base font-montserrat leading-relaxed max-w-md">
@@ -98,7 +98,7 @@ export default function WhyMattersSection() {
                       <h3 className="text-sm uppercase tracking-widest text-primary font-bold font-montserrat">At The Half Brick</h3>
                     </div>
 
-                    <p className="text-3xl md:text-4xl lg:text-5xl font-poppins leading-tight">
+                    <p className="text-3xl md:text-4xl lg:text-5xl font-univia leading-tight">
                       <span className="font-light text-black/80">Business is built</span>
                       <br />
                       <span className="font-bold text-black relative inline-block mt-3 transition-colors duration-500 group-hover:text-primary">
@@ -149,7 +149,7 @@ export default function WhyMattersSection() {
                   <p className="text-xs md:text-sm font-montserrat uppercase tracking-[0.3em] text-grey mb-4 transition-colors group-hover:text-primary">
                     The ultimate approach
                   </p>
-                  <h3 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-black font-poppins tracking-tighter !leading-[1.1] transition-transform duration-500 group-hover:scale-105">
+                  <h3 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-black font-univia tracking-tighter !leading-[1.1] transition-transform duration-500 group-hover:scale-105">
                     Brick by
                     <span className="block text-primary transform origin-left transition-all duration-500 ease-out">Brick.</span>
                   </h3>

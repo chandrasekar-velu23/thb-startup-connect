@@ -7,14 +7,7 @@
 /* fonts import */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
-// univia font setup
-
-@font-face {
-  font-family: UniviaFont;
-  src: url("../../public/fonts/UniviaPro-Bold.otf");
-  src: url("../../public/fonts/UniviaPro-Regular.otf");
-  src: url("../../public/fonts/UniviaPro-Black.otf");
-}
+// font handled by Next.js font loader
 
 :root {
   /* fonts */

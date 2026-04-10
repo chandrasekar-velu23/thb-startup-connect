@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Poppins, Montserrat, Urbanist } from "next/font/google";
+import { Poppins, Montserrat } from "next/font/google";
+import localFont from 'next/font/local';
 import "./globals.css";
 
 const poppins = Poppins({
@@ -14,10 +15,25 @@ const montserrat = Montserrat({
   weight: ["400", "500", "600", "700"],
 });
 
-const univia = Urbanist({
-  variable: "--font-univia-pro",
-  subsets: ["latin"],
-  weight: ["700"],
+const univia = localFont({
+  src: [
+    {
+      path: '../public/fonts/UniviaPro-Medium.otf',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/UniviaPro-Bold.otf',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/UniviaPro-Black.otf',
+      weight: '900',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-univia',
 });
 
 export const metadata: Metadata = {

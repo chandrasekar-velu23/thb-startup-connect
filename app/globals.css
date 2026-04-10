@@ -51,7 +51,7 @@ body {
 
 /* ===== TYPOGRAPHY ===== */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-poppins);
+  font-family: var(--font-univia), var(--font-poppins), sans-serif;
   font-weight: 700;
   color: var(--color-black);
   line-height: 1.2;

@@ -163,7 +163,7 @@ export default function RegistrationModal({
           {/* Header */}
           <div className="p-6 md:p-8 border-b border-light-grey bg-white/95 sticky top-0 z-[60] backdrop-blur-md flex justify-between items-start">
             <div>
-              <h2 className="text-2xl font-bold text-black font-poppins tracking-tight md:pr-8">Apply for Masterclass Access</h2>
+              <h2 className="text-2xl font-bold text-black font-univia tracking-tight md:pr-8">Apply for Masterclass Access</h2>
               {!submitted && (
                 <p className="text-sm text-grey mt-2">This is a limited-seat session. We review registrations to ensure serious participants.</p>
               )}
@@ -183,7 +183,7 @@ export default function RegistrationModal({
               <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2 animate-bounce-slow">
                 <CheckCircle2 className="w-10 h-10 text-primary" strokeWidth={2.5} />
               </div>
-              <h3 className="text-3xl font-bold text-black font-poppins tracking-tight">
+              <h3 className="text-3xl font-bold text-black font-univia tracking-tight">
                 You're almost in.
               </h3>
 
@@ -204,7 +204,7 @@ export default function RegistrationModal({
             <form onSubmit={handleSubmit} className="p-6 md:p-8 space-y-5">
               {/* Name */}
               <div>
-                <label className="block text-sm font-semibold text-black mb-2 font-poppins">
+                <label className="block text-sm font-semibold text-black mb-2 font-univia">
                   Full Name <span className="text-primary">*</span>
                 </label>
                 <input
@@ -224,7 +224,7 @@ export default function RegistrationModal({
 
               {/* Email */}
               <div>
-                <label className="block text-sm font-semibold text-black mb-2 font-poppins">
+                <label className="block text-sm font-semibold text-black mb-2 font-univia">
                   Email ID <span className="text-primary">*</span>
                 </label>
                 <input
@@ -244,7 +244,7 @@ export default function RegistrationModal({
 
               {/* Phone */}
               <div>
-                <label className="block text-sm font-semibold text-black mb-2 font-poppins">
+                <label className="block text-sm font-semibold text-black mb-2 font-univia">
                   Phone Number <span className="text-primary">*</span> <span className="text-grey font-normal text-xs ml-1">(WhatsApp preferred)</span>
                 </label>
                 <input
@@ -264,7 +264,7 @@ export default function RegistrationModal({
 
               {/* Current Status */}
               <div>
-                <label className="block text-sm font-semibold text-black mb-2 font-poppins">
+                <label className="block text-sm font-semibold text-black mb-2 font-univia">
                   Are you currently? <span className="text-primary">*</span>
                 </label>
                 <select
@@ -289,7 +289,7 @@ export default function RegistrationModal({
 
               {/* Description */}
               <div>
-                <label className="block text-sm font-semibold text-black mb-2 font-poppins">
+                <label className="block text-sm font-semibold text-black mb-2 font-univia">
                   What best describes you? <span className="text-primary">*</span>
                 </label>
                 <select
@@ -313,7 +313,7 @@ export default function RegistrationModal({
 
               {/* LinkedIn URL */}
               <div>
-                <label className="block text-sm font-semibold text-black mb-2 font-poppins">
+                <label className="block text-sm font-semibold text-black mb-2 font-univia">
                   LinkedIn Profile URL <span className="text-grey font-normal text-xs ml-1">(Optional)</span>
                 </label>
                 <input
@@ -333,7 +333,7 @@ export default function RegistrationModal({
 
               {/* Portfolio URL */}
               <div>
-                <label className="block text-sm font-semibold text-black mb-2 font-poppins">
+                <label className="block text-sm font-semibold text-black mb-2 font-univia">
                   Website / Portfolio / Company Info <span className="text-grey font-normal text-xs ml-1">(Optional)</span>
                 </label>
                 <input
@@ -353,7 +353,7 @@ export default function RegistrationModal({
 
               {/* Reason */}
               <div>
-                <label className="block text-sm font-semibold text-black mb-2 font-poppins">
+                <label className="block text-sm font-semibold text-black mb-2 font-univia">
                   Why do you want to attend this session? <span className="text-primary">*</span> <span className="text-grey font-normal text-xs ml-1">(Short answer)</span>
                 </label>
                 <textarea

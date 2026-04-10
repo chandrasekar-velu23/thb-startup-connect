@@ -18,7 +18,7 @@ function LearningCard({ point }: { point: LearningPoint }) {
         </div>
       </div>
       <div className="space-y-3 mt-1">
-        <h4 className="text-lg md:text-xl font-bold text-black font-poppins transition-colors duration-500 group-hover:text-primary">{point.title}</h4>
+        <h4 className="text-lg md:text-xl font-bold text-black font-univia transition-colors duration-500 group-hover:text-primary">{point.title}</h4>
         <p className="text-grey text-sm md:text-base leading-relaxed tracking-wide">{point.description}</p>
       </div>
     </div>
@@ -57,7 +57,7 @@ export default function SessionSection() {
           {/* Main heading and What it Isn't */}
           <div className="text-center space-y-10 max-w-4xl mx-auto">
             <div className="space-y-4">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black font-poppins tracking-tight">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black font-univia tracking-tight">
                 The <span className="text-primary">Session</span>
               </h2>
               <div className="w-24 h-1.5 bg-primary mx-auto rounded-full"></div>
@@ -87,7 +87,7 @@ export default function SessionSection() {
                 </p>
 
                 <div className="w-full pt-4 border-t border-black/10">
-                  <p className="text-4xl md:text-5xl lg:text-6xl pt-6 font-extrabold text-black font-poppins leading-tight tracking-tight">
+                  <p className="text-4xl md:text-5xl lg:text-6xl pt-6 font-extrabold text-black font-univia leading-tight tracking-tight">
                     Building a <br className="md:hidden" />
                     <span className="text-primary group-hover:text-black transition-colors duration-500">self-sustainable </span>
                     business.
@@ -100,7 +100,7 @@ export default function SessionSection() {
           {/* What you'll learn */}
           <div className="max-w-5xl mx-auto space-y-12">
             <div className="text-center">
-              <h3 className="text-3xl md:text-4xl font-bold text-black font-poppins inline-flex flex-col">
+              <h3 className="text-3xl md:text-4xl font-bold text-black font-univia inline-flex flex-col">
                 What You Will Learn
                 <div className="h-1.5 w-1/2 bg-primary mx-auto mt-4 rounded-full"></div>
               </h3>

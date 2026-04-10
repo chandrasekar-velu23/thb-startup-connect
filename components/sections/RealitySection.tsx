@@ -18,7 +18,7 @@ function ItemCard({ item, isChase }: { item: Item; isChase: boolean }) {
         }`}>
         {item.icon}
       </div>
-      <p className={`font-bold text-lg md:text-xl font-poppins transition-colors duration-500 leading-tight ${isChase ? "text-grey group-hover:text-black" : "text-black"
+      <p className={`font-bold text-lg md:text-xl font-univia transition-colors duration-500 leading-tight ${isChase ? "text-grey group-hover:text-black" : "text-black"
         }`}>{item.title}</p>
     </div>
   );
@@ -48,11 +48,11 @@ export default function RealitySection() {
               <AlertCircle className="w-4 h-4 text-primary" />
               The Trap
             </div> */}
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black font-poppins tracking-tight">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black font-univia tracking-tight">
               The Reality
             </h2>
             <div className="w-24 h-1.5 bg-primary mx-auto rounded-full"></div>
-            <p className="text-xl md:text-2xl text-grey max-w-3xl mx-auto font-poppins leading-relaxed pt-4">
+            <p className="text-xl md:text-2xl text-grey max-w-3xl mx-auto font-univia leading-relaxed pt-4">
               Most people are starting up today.
               <br />
               Very few are building something that <span className="text-black font-bold relative inline-block group cursor-default">
@@ -68,7 +68,7 @@ export default function RealitySection() {
             <div className="space-y-8 relative">
               <div className="flex items-center gap-4">
                 <div className="w-3 h-3 rounded-full bg-grey/30"></div>
-                <h3 className="text-2xl md:text-3xl font-bold text-grey font-poppins">They Chase</h3>
+                <h3 className="text-2xl md:text-3xl font-bold text-grey font-univia">They Chase</h3>
               </div>
               <div className="space-y-4">
                 {whatTheyChase.map((item, idx) => (
@@ -81,7 +81,7 @@ export default function RealitySection() {
             <div className="space-y-8">
               <div className="flex items-center gap-4">
                 <div className="w-3 h-3 rounded-full bg-primary animate-pulse"></div>
-                <h3 className="text-2xl md:text-3xl font-bold text-black font-poppins">But Ignore</h3>
+                <h3 className="text-2xl md:text-3xl font-bold text-black font-univia">But Ignore</h3>
               </div>
               <div className="space-y-4">
                 {whatTheyIgnore.map((item, idx) => (
@@ -101,7 +101,7 @@ export default function RealitySection() {
                 <p className="text-xl md:text-2xl text-black/70 font-montserrat">
                   That's why many startups don't fail loudly.
                 </p>
-                <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-black font-poppins leading-tight tracking-tight">
+                <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-black font-univia leading-tight tracking-tight">
                   They <span className="text-primary transition-colors duration-500">quietly disappear.</span>
                 </div>
 
