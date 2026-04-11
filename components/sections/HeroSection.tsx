@@ -91,13 +91,13 @@ export default function HeroSection() {
         </div>
 
         {/* Content Part */}
-        <Container size="xl" className="relative z-10 w-full pl-5 ml-5 md:ml-[12.5rem] md:pt-16 pt-5 flex-1 mr-auto transition-all">
+        <Container size="xl" className="relative z-10 w-full pl-5 ml-5 md:ml-[12.5rem] md:pt-16 pt-5 pr-8 flex-1 mr-auto transition-all">
           <div
             ref={contentRef}
             className="flex w-full min-h-[50vh] md:min-h-screen pt-16 pb-20 md:pt-0 md:pb-0 items-start md:items-center text-left transition-all scroll-mt-24"
           >
             {/* Main Content Width Wrapper */}
-            <div className="w-full lg:w-[85%] xl:w-[75%] max-w-5xl flex flex-col gap-6 md:gap-8 pr-4 lg:pr-12">
+            <div className="w-full lg:w-[85%] xl:w-[75%] max-w-5xl flex flex-col gap-6 md:gap-8 pr-8 lg:pr-12">
 
               {/* Static Text Content */}
               <div className="relative min-h-[220px] sm:min-h-[250px] md:min-h-[280px] lg:min-h-[300px] flex items-center mb-4 md:mb-8">

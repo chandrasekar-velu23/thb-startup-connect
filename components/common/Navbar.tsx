@@ -22,7 +22,7 @@ export default function Navbar() {
 
         {/* Navigation & CTA (Right side) */}
         <div className="flex items-center gap-6 md:gap-8">
-          <Link href="https://www.thehalfbrick.com/" className="text-black font-poppins hover:text-primary transition-colors text-sm md:text-base font-medium">
+          <Link href="https://www.thehalfbrick.com/" className="text-black font-univia hover:text-primary transition-colors text-sm md:text-base font-medium">
             Home
           </Link>
 

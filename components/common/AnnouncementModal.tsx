@@ -40,7 +40,7 @@ export default function AnnouncementModal() {
         
         {/* Bottom CTA Section */}
         <div className="p-5 flex flex-col items-center bg-white border-t border-light-grey/50">
-          <p className="font-bold text-[#333333] font-poppins mb-4 text-sm tracking-wide">
+          <p className="font-bold text-[#333333] font-univia mb-4 text-sm tracking-wide">
             Join us for this upcoming event!
           </p>
           

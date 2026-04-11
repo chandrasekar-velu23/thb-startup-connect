@@ -1,9 +1,31 @@
 "use client";
 
+import { useState, useEffect, useRef } from "react";
 import Container from "@/components/common/Container";
 import { Target, Layers, Blocks, CheckCircle2, Zap } from "lucide-react";
 
 export default function WhyMattersSection() {
+  const brickRef = useRef<HTMLDivElement>(null);
+  const [brickInView, setBrickInView] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Trigger animation when card is at least 20% visible
+        if (entry.isIntersecting) {
+          setBrickInView(true);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (brickRef.current) {
+      observer.observe(brickRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section className="py-20 md:py-32 bg-white relative overflow-hidden group/section">
       {/* Background elements */}
@@ -121,7 +143,10 @@ export default function WhyMattersSection() {
             </div>
 
             {/* Right Column (Visual Statement - Brick by Brick) */}
-            <div className="lg:col-span-5 relative h-full flex min-h-[400px] lg:min-h-0">
+            <div
+              ref={brickRef}
+              className="lg:col-span-5 relative h-full flex min-h-[400px] lg:min-h-0"
+            >
               <div className="w-full bg-white border border-light-grey rounded-3xl p-10 flex flex-col justify-center items-center text-center hover:border-primary/40 transition-all duration-700 group relative overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1">
 
                 {/* Custom Animated CSS Bricks */}
@@ -129,20 +154,20 @@ export default function WhyMattersSection() {
 
                   {/* Foundation layer */}
                   <div className="absolute bottom-0 flex justify-center w-full gap-2">
-                    <div className="w-[70px] h-10 bg-black rounded shadow-md transform transition-all duration-700 group-hover:-translate-y-2 group-hover:bg-primary/20"></div>
-                    <div className="w-[70px] h-10 bg-black rounded shadow-md transform transition-all duration-700 delay-75 group-hover:-translate-y-2 group-hover:bg-primary/20 border border-white/10"></div>
+                    <div className={`w-[70px] h-10 bg-black rounded shadow-md transform transition-all duration-700 ${brickInView ? '-translate-y-2 md:translate-y-0' : ''} group-hover:-translate-y-2 group-hover:bg-primary/20`}></div>
+                    <div className={`w-[70px] h-10 bg-black rounded shadow-md transform transition-all duration-700 delay-75 ${brickInView ? '-translate-y-2 md:translate-y-0' : ''} group-hover:-translate-y-2 group-hover:bg-primary/20 border border-white/10`}></div>
                   </div>
                   {/* Middle layer */}
                   <div className="absolute bottom-11 flex justify-center w-full z-10">
-                    <div className="w-[70px] h-10 bg-black/90 rounded shadow-md transform transition-all duration-700 delay-150 group-hover:-translate-y-4 group-hover:bg-primary/20"></div>
+                    <div className={`w-[70px] h-10 bg-black/90 rounded shadow-md transform transition-all duration-700 delay-150 ${brickInView ? '-translate-y-4 md:translate-y-0' : ''} group-hover:-translate-y-4 group-hover:bg-primary/20`}></div>
                   </div>
                   {/* Top layer */}
                   <div className="absolute bottom-[88px] flex justify-center w-full z-20">
-                    <div className="w-[70px] h-10 bg-black/80 rounded shadow-md transform transition-all duration-700 delay-200 group-hover:-translate-y-6 group-hover:bg-primary/20"></div>
+                    <div className={`w-[70px] h-10 bg-black/80 rounded shadow-md transform transition-all duration-700 delay-200 ${brickInView ? '-translate-y-6 md:translate-y-0' : ''} group-hover:-translate-y-6 group-hover:bg-primary/20`}></div>
                   </div>
 
-                  {/* Icon that appears behind on hover */}
-                  <Blocks className="absolute -top-4 text-grey/5 w-40 h-40 opacity-0 group-hover:opacity-100 scale-75 group-hover:scale-100 transition-all duration-1000 ease-out" />
+                  {/* Icon that appears behind on hover/scroll */}
+                  <Blocks className={`absolute -top-4 text-grey/5 w-40 h-40 transition-all duration-1000 ease-out ${brickInView ? 'opacity-30 scale-100 md:opacity-0 md:scale-75' : 'opacity-0 scale-75'} group-hover:opacity-100 group-hover:scale-100`} />
                 </div>
 
                 <div className="relative z-30">
@@ -159,21 +184,12 @@ export default function WhyMattersSection() {
 
           </div>
 
-          {/* Key Takeaway Footer */}
-          <div className="max-w-5xl mx-auto w-full relative group cursor-default">
-            {/* Colorful soft shadow behind the box */}
-            <div className="absolute -inset-1 bg-gradient-to-r from-primary via-black to-primary rounded-3xl blur opacity-10 group-hover:opacity-30 transition duration-1000 group-hover:duration-300"></div>
-
-            <div className="relative bg-white border border-light-grey rounded-3xl p-8 md:p-14 font-montserrat transition-all duration-500 group-hover:border-primary/20">
-              {/* <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-8 transform group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-500">
-                <CheckCircle2 className="w-8 h-8 text-primary" />
-              </div> */}
-
-              <p className="text-black text-xl md:text-2xl lg:text-3xl font-regular leading-relaxed md:leading-loose text-justify">
-                Every successful business you admire started with a single <span className="font-bold transition-colors duration-500 group-hover:text-primary">brick</span>.
-                The difference isn't the idea—it's the <span className="font-bold transition-colors duration-500 group-hover:text-primary">foundation</span> and the <span className="font-bold transition-colors duration-500 group-hover:text-primary">discipline</span> to build properly.
-              </p>
-            </div>
+          {/* Key Takeaway Footer - Simplified Version */}
+          <div className="max-w-5xl mx-auto w-full text-center md:text-left py-8 md:py-12 border-t border-light-grey/60 mt-8">
+            <p className="text-black text-xl md:text-2xl lg:text-3xl font-regular leading-relaxed md:leading-loose text-justify md:text-center">
+              Every successful business you admire started with a single <span className="font-bold text-primary">brick</span>.
+              The difference isn't the idea—it's the <span className="font-bold text-primary">foundation</span> and the <span className="font-bold text-primary">discipline</span> to build properly.
+            </p>
           </div>
 
         </div>

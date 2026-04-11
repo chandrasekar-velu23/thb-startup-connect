@@ -15,7 +15,7 @@ export default function Footer() {
               <div className="w-8 h-8 bg-primary rounded flex items-center justify-center">
                 <span className="text-white font-bold">█</span>
               </div>
-              <span className="font-bold text-black font-poppins">The Half Brick</span>
+              <span className="font-bold text-black font-univia">The Half Brick</span>
             </div>
             <p className="text-mid-grey text-sm font-montserrat">
               Building sustainable businesses brick by brick, not hype by hype.
@@ -24,7 +24,7 @@ export default function Footer() {
 
           {/* Event Info */}
           <div className="space-y-4">
-            <h3 className="font-semibold text-black font-poppins">Event</h3>
+            <h3 className="font-semibold text-black font-univia">Event</h3>
             <ul className="space-y-2 text-sm text-mid-grey font-montserrat">
               <li>
                 <a href="#" className="hover:text-primary transition-colors">
@@ -46,7 +46,7 @@ export default function Footer() {
 
           {/* Follow Us */}
           <div className="space-y-4">
-            <h3 className="font-semibold text-black font-poppins">Follow</h3>
+            <h3 className="font-semibold text-black font-univia">Follow</h3>
             <ul className="space-y-2 text-sm text-mid-grey font-montserrat">
               <li>
                 <a
@@ -83,7 +83,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div className="space-y-4">
-            <h3 className="font-semibold text-black font-poppins">Contact</h3>
+            <h3 className="font-semibold text-black font-univia">Contact</h3>
             <ul className="space-y-2 text-sm text-mid-grey font-montserrat">
               <li>
                 <a

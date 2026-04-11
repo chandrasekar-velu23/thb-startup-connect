@@ -46,10 +46,10 @@ export default function Button({
       className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
     >
       {isLoading ? (
-        <>
-          <span className="animate-spin">⏳</span>
-          Loading...
-        </>
+        <div className="flex items-center gap-2">
+          <div className="w-5 h-5 border-2 border-current/30 border-t-current rounded-full animate-spin"></div>
+          <span>Processing...</span>
+        </div>
       ) : (
         children
       )}

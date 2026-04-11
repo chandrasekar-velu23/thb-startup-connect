@@ -19,7 +19,7 @@ function AudienceCard({ audience }: { audience: AudienceType }) {
         }`}>
         {audience.icon}
       </div>
-      <p className={`font-bold text-lg md:text-xl font-poppins transition-colors duration-500 leading-tight ${audience.positive ? "text-black" : "text-grey group-hover:text-black"
+      <p className={`font-bold text-lg md:text-xl font-univia transition-colors duration-500 leading-tight ${audience.positive ? "text-black" : "text-grey group-hover:text-black"
         }`}>{audience.title}</p>
     </div>
   );
@@ -51,7 +51,7 @@ export default function TargetAudienceSection() {
       <Container className="relative z-10">
         <div className="space-y-16">
           <div className="text-center space-y-4">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black font-poppins tracking-tight">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black font-univia tracking-tight">
               Who This Is For
             </h2>
             <div className="w-24 h-1.5 bg-primary mx-auto rounded-full"></div>
@@ -62,7 +62,7 @@ export default function TargetAudienceSection() {
             <div className="space-y-8">
               <div className="flex items-center gap-4">
                 {/* <CheckCircle2 className="w-8 h-8 text-primary" strokeWidth={2.5} /> */}
-                <h3 className="text-2xl md:text-3xl font-bold text-black font-poppins">For you if</h3>
+                <h3 className="text-2xl md:text-3xl font-bold text-black font-univia">For you if</h3>
               </div>
               <div className="grid md:grid-cols-2 gap-6">
                 {forWho.map((audience, idx) => (
@@ -75,7 +75,7 @@ export default function TargetAudienceSection() {
             <div className="space-y-8 pt-10 border-t border-light-grey">
               <div className="flex items-center gap-4">
                 {/* <XCircle className="w-8 h-8 text-black" strokeWidth={2.5} /> */}
-                <h3 className="text-2xl md:text-3xl text-grey font-bold font-poppins">This is not for</h3>
+                <h3 className="text-2xl md:text-3xl text-grey font-bold font-univia">This is not for</h3>
               </div>
               <div className="grid md:grid-cols-2 gap-6 items-stretch">
                 {notFor.map((audience, idx) => (
@@ -84,7 +84,7 @@ export default function TargetAudienceSection() {
 
                 {/* Visual balance box to replace 4th item in Not For grid */}
                 <div className="group hidden md:flex items-center gap-6 p-6 md:p-8 rounded-2xl border border-transparent bg-primary/5 transition-all duration-500">
-                  <p className="text-primary font-bold text-lg font-poppins text-center w-full my-auto opacity-70 group-hover:opacity-100 transition-opacity duration-300">
+                  <p className="text-primary font-bold text-lg font-univia text-center w-full my-auto opacity-70 group-hover:opacity-100 transition-opacity duration-300">
                     We value action over theory.
                   </p>
                 </div>
