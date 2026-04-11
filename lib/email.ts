@@ -96,24 +96,4 @@ export async function sendAdminNotification(
   }
 }
 
-export async function sendReminderEmail(email: string, name: string) {
-  try {
-    const { reminderEmailTemplate } = await import("./emailTemplates");
-
-    const html = reminderEmailTemplate(name);
-
-    await transporter.sendMail({
-      from: SMTP_USER,
-      to: email,
-      subject: "Reminder: The Half Brick Masterclass starts soon!",
-      html,
-    });
-
-    return { success: true };
-  } catch (error) {
-    console.error("Error sending reminder email:", error);
-    return { success: false, error };
-  }
-}
-
 export default transporter;
