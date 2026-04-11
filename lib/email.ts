@@ -62,6 +62,8 @@ export async function sendAdminNotification(
   description: string,
   linkedin: string,
   portfolio: string,
+  referralSource: string,
+  otherReferral: string | undefined,
   reason: string
 ) {
   try {
@@ -75,6 +77,8 @@ export async function sendAdminNotification(
       description,
       linkedin,
       portfolio,
+      referralSource,
+      otherReferral,
       reason
     );
 

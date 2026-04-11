@@ -82,7 +82,7 @@ export default function FinalCTASection() {
                 onClick={() => setIsModalOpen(true)}
                 className="w-full sm:w-auto px-12"
               >
-                Apply to Join Now
+                Register Now
               </Button>
               <p className="text-sm text-black">
                 Limited seats • Free access

@@ -153,7 +153,7 @@ export default function HeroSection() {
                     onClick={() => setIsModalOpen(true)}
                     className="w-full sm:w-auto shadow-[0_0_20px_rgba(201,37,21,0.4)]"
                   >
-                    Apply to Join Now
+                    Register Now
                   </Button>
                   <p className="text-sm text-white/70 font-montserrat mt-4">
                     Seats are limited. Reserve yours today.

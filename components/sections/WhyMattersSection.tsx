@@ -188,7 +188,7 @@ export default function WhyMattersSection() {
           <div className="max-w-5xl mx-auto w-full text-center md:text-left py-8 md:py-12 border-t border-light-grey/60 mt-8">
             <p className="text-black text-xl md:text-2xl lg:text-3xl font-regular leading-relaxed md:leading-loose text-justify md:text-center">
               Every successful business you admire started with a single <span className="font-bold text-primary">brick</span>.
-              The difference isn't the idea—it's the <span className="font-bold text-primary">foundation</span> and the <span className="font-bold text-primary">discipline</span> to build properly.
+              The difference isn't the idea,it's the <span className="font-bold text-primary">foundation</span> and the <span className="font-bold text-primary">discipline</span> to build properly.
             </p>
           </div>
 

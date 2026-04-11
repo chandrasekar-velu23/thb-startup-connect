@@ -65,7 +65,7 @@ export default function UrgencySection() {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-black mb-3 font-univia group-hover:scale-105 transition-transform duration-300 group-hover:text-red-500">
-                    No Replays. No Second Batch.
+                    Live Session, No Replays
                   </h3>
                   <p className="text-sm md:text-base text-neutral-600 leading-relaxed">
                     This masterclass is live on May 3rd. If you miss it, it's gone.

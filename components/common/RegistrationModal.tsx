@@ -13,7 +13,17 @@ const registrationSchema = z.object({
   description: z.enum(["I want to start a business", "I already started but struggling", "Just exploring"]),
   linkedin: z.string().url("Please enter a valid URL").optional().or(z.literal("")),
   portfolio: z.string().url("Please enter a valid URL").optional().or(z.literal("")),
+  referralSource: z.string().min(1, "Please select how you heard about us"),
+  otherReferral: z.string().optional(),
   reason: z.string().min(5, "Please provide your reason").max(500, "Reason must be less than 500 characters"),
+}).refine((data) => {
+  if (data.referralSource === "Other" && (!data.otherReferral || data.otherReferral.trim() === "")) {
+    return false;
+  }
+  return true;
+}, {
+  message: "Please specify how you heard about us",
+  path: ["otherReferral"],
 });
 
 type RegistrationForm = z.infer<typeof registrationSchema>;
@@ -334,7 +344,7 @@ export default function RegistrationModal({
               {/* Portfolio URL */}
               <div>
                 <label className="block text-sm font-semibold text-black mb-2 font-univia">
-                  Website / Portfolio / Company Info <span className="text-grey font-normal text-xs ml-1">(Optional)</span>
+                  Company Website link / Portfolio link <span className="text-grey font-normal text-xs ml-1">(Optional)</span>
                 </label>
                 <input
                   type="url"
@@ -350,6 +360,57 @@ export default function RegistrationModal({
                   <p className="text-red-500 text-xs mt-1 font-montserrat">{errors.portfolio}</p>
                 )}
               </div>
+
+              {/* Referral Source */}
+              <div>
+                <label className="block text-sm font-semibold text-black mb-2 font-univia">
+                  How did you hear about us? <span className="text-primary">*</span>
+                </label>
+                <select
+                  name="referralSource"
+                  value={formData.referralSource || ""}
+                  onChange={handleChange}
+                  className={`w-full px-4 py-3 bg-[#FAFAFA] border rounded-md text-black focus:outline-none transition-all font-montserrat ${errors.referralSource
+                    ? "border-red-500 focus:border-red-600 focus:ring-1 focus:ring-red-500"
+                    : "border-light-grey focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary/20 hover:border-black/20"
+                    }`}
+                >
+                  <option value="" disabled className="text-mid-grey">Select an option</option>
+                  <option value="LinkedIn">LinkedIn</option>
+                  <option value="WhatsApp">WhatsApp</option>
+                  <option value="Friends">Friends of friends</option>
+                  {/* <option value="Word of Mouth">Word of Mouth</option> */}
+                  <option value="Website">Website</option>
+                  <option value="Google">Google</option>
+                  <option value="Other">Other</option>
+                </select>
+                {errors.referralSource && (
+                  <p className="text-red-500 text-xs mt-1 font-montserrat">{errors.referralSource}</p>
+                )}
+              </div>
+
+              {/* Other Referral Source - Conditional */}
+              {formData.referralSource === "Other" && (
+                <div className="animate-in fade-in slide-in-from-top-1">
+                  <label className="block text-sm font-semibold text-black mb-2 font-univia">
+                    Please specify <span className="text-primary">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="otherReferral"
+                    placeholder="Where did you hear about us?"
+                    value={formData.otherReferral || ""}
+                    onChange={handleChange}
+                    className={`w-full px-4 py-3 bg-[#FAFAFA] border rounded-md text-black focus:outline-none transition-all font-montserrat ${errors.otherReferral
+                      ? "border-red-500 focus:border-red-600 focus:ring-1 focus:ring-red-500"
+                      : "border-light-grey focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary/20 hover:border-black/20"
+                      }`}
+                  />
+                  {errors.otherReferral && (
+                    <p className="text-red-500 text-xs mt-1 font-montserrat">{errors.otherReferral}</p>
+                  )}
+                </div>
+              )}
 
               {/* Reason */}
               <div>
@@ -388,7 +449,7 @@ export default function RegistrationModal({
                   disabled={isLoading}
                   className="w-full text-lg shadow-lg hover:shadow-xl font-bold rounded-md"
                 >
-                  Apply & Reserve My Seat
+                  Apply Now
                 </Button>
               </div>
 

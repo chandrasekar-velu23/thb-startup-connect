@@ -64,34 +64,29 @@ export async function POST(request: NextRequest) {
       httpOnly: false, // Must be readable front-end for modal block
     });
 
-    // Send emails
-    try {
-      const confirmationLink = `${process.env.NEXT_PUBLIC_APP_URL}/confirm/${registrationId}`;
-      
-      await Promise.all([
-        // Pass currentStatus for context-dependent email rendering
-        sendConfirmationEmail(body.email, body.name, confirmationLink, body.currentStatus),
-        
-        // We can send admin notification via our Node mailer API calls
-        sendAdminNotification(
-          body.name,
-          body.email,
-          body.phone,
-          body.currentStatus,
-          body.description,
-          body.linkedin || "Not provided",
-          body.portfolio || "Not provided",
-          body.reason
-        ),
-      ]);
-    } catch (emailError) {
-      console.error("Email sending error:", emailError);
-      // Don't fail the registration if email fails
-    }
+    // Optimized Path: Return response IMMEDIATELY after sheet sync
+    const confirmationLink = `${process.env.NEXT_PUBLIC_APP_URL}/confirm/${registrationId}`;
+
+    // Fire and forget emails (The user won't wait for these to finish)
+    Promise.all([
+      sendConfirmationEmail(body.email, body.name, confirmationLink, body.currentStatus),
+      sendAdminNotification(
+        body.name,
+        body.email,
+        body.phone,
+        body.currentStatus,
+        body.description,
+        body.linkedin || "Not provided",
+        body.portfolio || "Not provided",
+        body.referralSource || "Internal",
+        body.otherReferral || "",
+        body.reason
+      ),
+    ]).catch(err => console.error("Background Email Error:", err));
 
     return NextResponse.json(
       {
-        message: "Registration successful! Check your email for confirmation.",
+        message: "Registration successful!",
         registrationId,
       },
       { status: 201 }

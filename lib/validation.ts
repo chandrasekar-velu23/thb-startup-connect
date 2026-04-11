@@ -29,10 +29,20 @@ export const registrationSchema = z.object({
   ),
   linkedin: z.string().url("Please enter a valid URL").optional().or(z.literal("")),
   portfolio: z.string().url("Please enter a valid URL").optional().or(z.literal("")),
+  referralSource: z.string().min(1, "Please select how you heard about us"),
+  otherReferral: z.string().optional(),
   reason: z
     .string()
     .min(5, "Please provide a short reason")
     .max(500, "Must be less than 500 characters"),
+}).refine((data) => {
+  if (data.referralSource === "Other" && (!data.otherReferral || data.otherReferral.trim() === "")) {
+    return false;
+  }
+  return true;
+}, {
+  message: "Please specify how you heard about us",
+  path: ["otherReferral"],
 });
 
 export type RegistrationInput = z.infer<typeof registrationSchema>;
