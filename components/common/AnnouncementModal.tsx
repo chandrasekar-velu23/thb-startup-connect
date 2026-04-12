@@ -14,7 +14,7 @@ export default function AnnouncementModal() {
         setIsOpen(true);
       }
     };
-    
+
     // Instant popup
     const timer = setTimeout(() => {
       checkCookie();
@@ -28,22 +28,22 @@ export default function AnnouncementModal() {
   return (
     <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-in fade-in duration-200">
       <div className="relative bg-white rounded-xl border border-light-grey w-full max-w-sm sm:max-w-md shadow-2xl overflow-hidden animate-in zoom-in-95 duration-200 flex flex-col">
-        
+
         {/* Image Section */}
         <div className="w-full relative bg-white flex-shrink-0 flex items-center justify-center p-6 md:p-8 pt-10 md:pt-12 pb-2">
           <img
-            src="/images/announcement.jpg"
+            src="/images/master-class.jpg"
             alt="Masterclass Announcement"
             className="max-w-full max-h-[55vh] object-contain rounded-sm"
           />
         </div>
-        
+
         {/* Bottom CTA Section */}
         <div className="p-5 flex flex-col items-center bg-white border-t border-light-grey/50">
           <p className="font-bold text-[#333333] font-univia mb-4 text-sm tracking-wide">
             Join us for this upcoming event!
           </p>
-          
+
           <div className="flex w-full gap-3">
             <button
               onClick={() => {
