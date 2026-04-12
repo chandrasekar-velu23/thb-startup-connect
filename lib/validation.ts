@@ -27,9 +27,9 @@ export const registrationSchema = z.object({
       errorMap: () => ({ message: "Please select what best describes you" }),
     }
   ),
-  linkedin: z.string().url("Please enter a valid LinkedIn URL"),
-  portfolio: z.string().url("Please enter a valid URL").optional().or(z.literal("")),
-  businessType: z.string(),
+  linkedin: z.string().min(1, "LinkedIn URL is required").regex(/^(https?:\/\/)?(www\.)?linkedin\.com\/.+/i, "Please enter a valid LinkedIn profile URL"),
+  portfolio: z.string().optional().or(z.literal("")),
+  businessType: z.string().optional(),
   referralSource: z.string().min(1, "Please select how you heard about us"),
   otherReferral: z.string().optional(),
   reason: z
@@ -37,7 +37,7 @@ export const registrationSchema = z.object({
     .min(5, "Please provide a short reason")
     .max(500, "Must be less than 500 characters"),
 }).refine((data) => {
-  if (data.referralSource === "Other" && (!data.otherReferral || data.otherReferral.trim() === "")) {
+  if (data.referralSource === "Other" && (!data.otherReferral || !data.otherReferral.trim())) {
     return false;
   }
   return true;
@@ -45,7 +45,7 @@ export const registrationSchema = z.object({
   message: "Please specify how you heard about us",
   path: ["otherReferral"],
 }).refine((data) => {
-  if (data.description === "I want to start a business" && (!data.businessType || data.businessType.trim() === "")) {
+  if (data.description === "I want to start a business" && (!data.businessType || !data.businessType.trim())) {
     return false;
   }
   return true;
@@ -53,7 +53,7 @@ export const registrationSchema = z.object({
   message: "Please describe what kind of business you are looking for",
   path: ["businessType"],
 }).refine((data) => {
-  if (data.description === "I already started but struggling" && (!data.portfolio || data.portfolio.trim() === "")) {
+  if (data.description === "I already started but struggling" && (!data.portfolio || !data.portfolio.trim())) {
     return false;
   }
   return true;

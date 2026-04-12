@@ -52,7 +52,7 @@ export default function AnnouncementModal() {
               }}
               className="flex-1 bg-[#D7282F] hover:bg-[#B92228] text-white font-semibold py-2.5 px-4 rounded-md transition-colors font-montserrat shadow-sm text-sm"
             >
-              Apply to Join Now
+              Register Now
             </button>
             <button
               onClick={() => setIsOpen(false)}

@@ -11,14 +11,14 @@ const registrationSchema = z.object({
   phone: z.string().min(5, "Please enter a valid phone number").refine((val) => /^[0-9\s\-\+\(\)]+$/.test(val), "Invalid phone number format"),
   currentStatus: z.enum(["Student", "Working Professional", "Founder", "Exploring"]),
   description: z.enum(["I want to start a business", "I already started but struggling", "Just exploring"]),
-  linkedin: z.string().url("Please enter a valid LinkedIn URL"),
-  portfolio: z.string().url("Please enter a valid URL").optional().or(z.literal("")),
+  linkedin: z.string().min(1, "LinkedIn URL is required").regex(/^(https?:\/\/)?(www\.)?linkedin\.com\/.+/i, "Please enter a valid LinkedIn profile URL"),
+  portfolio: z.string().optional().or(z.literal("")),
   businessType: z.string().optional(),
   referralSource: z.string().min(1, "Please select how you heard about us"),
   otherReferral: z.string().optional(),
   reason: z.string().min(5, "Please provide your reason").max(500, "Reason must be less than 500 characters"),
 }).refine((data) => {
-  if (data.referralSource === "Other" && (!data.otherReferral || data.otherReferral.trim() === "")) {
+  if (data.referralSource === "Other" && (!data.otherReferral || !data.otherReferral.trim())) {
     return false;
   }
   return true;
@@ -26,7 +26,7 @@ const registrationSchema = z.object({
   message: "Please specify how you heard about us",
   path: ["otherReferral"],
 }).refine((data) => {
-  if (data.description === "I want to start a business" && (!data.businessType || data.businessType.trim() === "")) {
+  if (data.description === "I want to start a business" && (!data.businessType || !data.businessType.trim())) {
     return false;
   }
   return true;
@@ -34,7 +34,7 @@ const registrationSchema = z.object({
   message: "Please describe what kind of business you are looking for",
   path: ["businessType"],
 }).refine((data) => {
-  if (data.description === "I already started but struggling" && (!data.portfolio || data.portfolio.trim() === "")) {
+  if (data.description === "I already started but struggling" && (!data.portfolio || !data.portfolio.trim())) {
     return false;
   }
   return true;
@@ -367,8 +367,9 @@ export default function RegistrationModal({
                   LinkedIn Profile URL <span className="text-primary">*</span>
                 </label>
                 <input
-                  type="url"
+                  type="text"
                   name="linkedin"
+                  placeholder="linkedin.com/in/yourprofile"
                   value={formData.linkedin || ""}
                   onChange={handleChange}
                   className={`w-full px-4 py-3 bg-[#FAFAFA] border rounded-md text-black focus:outline-none transition-all font-montserrat ${errors.linkedin
@@ -388,9 +389,9 @@ export default function RegistrationModal({
                     Company Website link / Portfolio link <span className="text-primary">*</span>
                   </label>
                   <input
-                    type="url"
+                    type="text"
                     name="portfolio"
-                    placeholder="https://yourwebsite.com"
+                    placeholder="yourwebsite.com"
                     value={formData.portfolio || ""}
                     onChange={handleChange}
                     className={`w-full px-4 py-3 bg-[#FAFAFA] border rounded-md text-black focus:outline-none transition-all font-montserrat ${errors.portfolio
