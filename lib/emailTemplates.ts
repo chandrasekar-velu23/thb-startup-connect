@@ -8,8 +8,8 @@ export function confirmationEmailTemplate(
   const cdnUrl = process.env.R2_PUBLIC_URL || appUrl;
 
   // Important: Emails MUST use absolute URLs for images
-  const logoUrl = `./public/images/Startup_connect Logo.png`;
-  const heroImageUrl = `./public/images/announcement.jpg`;
+  const logoUrl = `https://raw.githubusercontent.com/chandrasekar-velu23/thb-startup-connect/refs/heads/main/public/images/The%20Half%20Brick.png`;
+  const heroImageUrl = `https://raw.githubusercontent.com/chandrasekar-velu23/thb-startup-connect/refs/heads/main/public/images/announcement.jpg`;
 
   return `
     <!DOCTYPE html>
@@ -17,7 +17,7 @@ export function confirmationEmailTemplate(
     <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Application Received - Startup Connect</title>
+      <title>Application Received - Startup Connect Masterclass from The Half Brick</title>
       <style>
         body { 
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -38,29 +38,30 @@ export function confirmationEmailTemplate(
     </head>
     <body>
       <div class="container">
-        <div class="header">
-          <img src="${logoUrl}" alt="Startup Connect" class="logo" onerror="this.src='https://thehalfbrick.com/Startup_connect_Logo.png'">
-        </div>
-        
-        <img src="${heroImageUrl}" alt="Masterclass Session" class="hero" onerror="this.style.display='none'">
+
         
         <div class="content">
           <h1>Application Received</h1>
           
           <p>Dear ${name},</p>
           
-          <p>This is to confirm that we have successfully received your application for the upcoming <strong>Startup Connect Masterclass</strong>.</p>
+          <p>Thank you for your application to the <strong>Startup Connect Masterclass</strong> conducted by <strong>The Half Brick</strong>.</p>
           
-          <p>Our team is currently reviewing all submissions to ensure a highly relevant cohort for this session. Please note that seats are exclusive and limited to builders who align most closely with the program's objectives.</p>
+          <p>We are pleased to confirm that your application has been successfully received. Our team is currently reviewing all submissions to curate a highly relevant cohort of early-stage founders and student entrepreneurs.</p>
           
-          <p>We will review your profile and get back to you shortly. If you are eligible to attend, you will receive a follow-up email with the session access details and joining instructions.</p>
-          
-          <p>Thank you for your patience and for your interest in Masterclass with <strong>The Half Brick</strong>.</p>
+          <p>As seats for this session are limited, participants will be selected based on alignment with the program objectives. You will receive an update on your application status shortly, along with further details if selected.</p>
+    
+        
+          <p>We appreciate your interest in learning with <strong>The Half Brick</strong> and look forward to the possibility of having you join us.</p>
           
           <div class="signature">
             Best Regards,<br>
-            <span class="brand-text">The half brick Team</span>
+            <p>Team The half brick <p>
           </div>
+        </div>
+
+        <div class="header">
+          <img src="${logoUrl}" alt="The Half Brick" class="logo" onerror="this.src='https://thehalfbrick.com'">
         </div>
         
         <div class="footer">
@@ -88,7 +89,8 @@ export function adminNotificationTemplate(
   portfolio: string,
   referralSource: string,
   otherReferral: string | undefined,
-  reason: string
+  reason: string,
+  businessIdea?: string
 ): string {
   const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://thehalfbrick.com";
 
@@ -122,6 +124,7 @@ export function adminNotificationTemplate(
         <div class="section-title">Professional Context</div>
         <div class="row"><div class="label">Current Status</div><div class="value">${currentStatus}</div></div>
         <div class="row"><div class="label">Objective</div><div class="value">${description}</div></div>
+        ${businessIdea ? `<div class="row"><div class="label">Business Idea</div><div class="value">${businessIdea}</div></div>` : ''}
         <div class="row"><div class="label">LinkedIn</div><div class="value"><a href="${linkedin}">${linkedin}</a></div></div>
         <div class="row"><div class="label">Portfolio</div><div class="value"><a href="${portfolio}">${portfolio}</a></div></div>
         

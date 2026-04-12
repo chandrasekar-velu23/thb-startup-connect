@@ -79,7 +79,7 @@ export default function HeroSection() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/90 md:bg-black/40"></div>
 
           {/* Scroll Down Button (Mobile Only) */}
-          <div className="md:hidden absolute bottom-12 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-3">
+          <div className="md:hidden absolute bottom-12 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2">
             <span className="text-white/40 text-[10px] tracking-[0.3em] font-montserrat uppercase">Explore</span>
             <button
               onClick={scrollToContent}
@@ -102,7 +102,7 @@ export default function HeroSection() {
               {/* Static Text Content */}
               <div className="relative min-h-[220px] sm:min-h-[250px] md:min-h-[280px] lg:min-h-[300px] flex items-center mb-4 md:mb-8">
                 <div className="flex flex-col justify-center w-full">
-                  <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight font-univia drop-shadow-2xl [text-shadow:_0_4px_12px_rgb(0_0_0_/_0.6)]">
+                  <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold pt-0 md:pt-0 leading-tight font-univia drop-shadow-2xl [text-shadow:_0_4px_12px_rgb(0_0_0_/_0.6)]">
                     <span className="text-red-600 block">Startup</span>
                     <span className="text-red-600 block mt-2">
                       is the New Trap
@@ -123,7 +123,7 @@ export default function HeroSection() {
               </div>
 
               {/* Quick Info Bar */}
-              <div className="flex flex-col sm:flex-row gap-6 bg-white/10 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-white/20 shadow-lg hover:shadow-xl transition-shadow w-full max-w-2xl mt-4 z-20 relative">
+              <div className="flex flex-col sm:flex-row gap-6 bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-lg hover:shadow-xl transition-shadow w-full max-w-2xl mt-4 z-20 relative ">
                 <div className="flex-1">
                   <p className="text-white/70 text-xs font-montserrat uppercase tracking-wider">DATE & TIME</p>
                   <p className="text-white text-lg font-semibold font-univia mt-2">

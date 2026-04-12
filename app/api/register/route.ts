@@ -76,8 +76,9 @@ export async function POST(request: NextRequest) {
         body.phone,
         body.currentStatus,
         body.description,
-        body.linkedin || "Not provided",
-        body.portfolio || "Not provided",
+        body.linkedin,
+        body.portfolio,
+        body.businessType,
         body.referralSource || "Internal",
         body.otherReferral || "",
         body.reason

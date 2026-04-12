@@ -11,8 +11,9 @@ const registrationSchema = z.object({
   phone: z.string().min(5, "Please enter a valid phone number").refine((val) => /^[0-9\s\-\+\(\)]+$/.test(val), "Invalid phone number format"),
   currentStatus: z.enum(["Student", "Working Professional", "Founder", "Exploring"]),
   description: z.enum(["I want to start a business", "I already started but struggling", "Just exploring"]),
-  linkedin: z.string().url("Please enter a valid URL").optional().or(z.literal("")),
+  linkedin: z.string().url("Please enter a valid LinkedIn URL"),
   portfolio: z.string().url("Please enter a valid URL").optional().or(z.literal("")),
+  businessType: z.string().optional(),
   referralSource: z.string().min(1, "Please select how you heard about us"),
   otherReferral: z.string().optional(),
   reason: z.string().min(5, "Please provide your reason").max(500, "Reason must be less than 500 characters"),
@@ -24,6 +25,22 @@ const registrationSchema = z.object({
 }, {
   message: "Please specify how you heard about us",
   path: ["otherReferral"],
+}).refine((data) => {
+  if (data.description === "I want to start a business" && (!data.businessType || data.businessType.trim() === "")) {
+    return false;
+  }
+  return true;
+}, {
+  message: "Please describe what kind of business you are looking for",
+  path: ["businessType"],
+}).refine((data) => {
+  if (data.description === "I already started but struggling" && (!data.portfolio || data.portfolio.trim() === "")) {
+    return false;
+  }
+  return true;
+}, {
+  message: "Please provide your company/portfolio link",
+  path: ["portfolio"],
 });
 
 type RegistrationForm = z.infer<typeof registrationSchema>;
@@ -46,12 +63,12 @@ export default function RegistrationModal({
 
   const modalSlides = [
     {
-      desktop: '/images/bg-cover-ph.png',
-      mobile: '/images/bg-cover.png'
-    },
-    {
       desktop: '/images/bg-cover-1-ph.png',
       mobile: '/images/bg-cover-1.png'
+    },
+    {
+      desktop: '/images/bg-cover-ph.png',
+      mobile: '/images/bg-cover.png'
     }
   ];
 
@@ -321,10 +338,33 @@ export default function RegistrationModal({
                 )}
               </div>
 
+              {/* Business Type - Conditional */}
+              {formData.description === "I want to start a business" && (
+                <div className="animate-in fade-in slide-in-from-top-1">
+                  <label className="block text-sm font-semibold text-black mb-2 font-univia">
+                    Describe what kind of business you are looking for? <span className="text-primary">*</span>
+                  </label>
+                  <textarea
+                    name="businessType"
+                    placeholder="E.g. SaaS, E-commerce, Service-based, etc."
+                    value={formData.businessType || ""}
+                    onChange={handleChange}
+                    rows={2}
+                    className={`w-full px-4 py-3 bg-[#FAFAFA] border rounded-md text-black focus:outline-none transition-all resize-none font-montserrat ${errors.businessType
+                      ? "border-red-500 focus:border-red-600 focus:ring-1 focus:ring-red-500"
+                      : "border-light-grey focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary/20 hover:border-black/20"
+                      }`}
+                  />
+                  {errors.businessType && (
+                    <p className="text-red-500 text-xs mt-1 font-montserrat">{errors.businessType}</p>
+                  )}
+                </div>
+              )}
+
               {/* LinkedIn URL */}
               <div>
                 <label className="block text-sm font-semibold text-black mb-2 font-univia">
-                  LinkedIn Profile URL <span className="text-grey font-normal text-xs ml-1">(Optional)</span>
+                  LinkedIn Profile URL <span className="text-primary">*</span>
                 </label>
                 <input
                   type="url"
@@ -341,25 +381,28 @@ export default function RegistrationModal({
                 )}
               </div>
 
-              {/* Portfolio URL */}
-              <div>
-                <label className="block text-sm font-semibold text-black mb-2 font-univia">
-                  Company Website link / Portfolio link <span className="text-grey font-normal text-xs ml-1">(Optional)</span>
-                </label>
-                <input
-                  type="url"
-                  name="portfolio"
-                  value={formData.portfolio || ""}
-                  onChange={handleChange}
-                  className={`w-full px-4 py-3 bg-[#FAFAFA] border rounded-md text-black focus:outline-none transition-all font-montserrat ${errors.portfolio
-                    ? "border-red-500 focus:border-red-600 focus:ring-1 focus:ring-red-500"
-                    : "border-light-grey focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary/20 hover:border-black/20"
-                    }`}
-                />
-                {errors.portfolio && (
-                  <p className="text-red-500 text-xs mt-1 font-montserrat">{errors.portfolio}</p>
-                )}
-              </div>
+              {/* Portfolio URL - Conditional */}
+              {formData.description === "I already started but struggling" && (
+                <div className="animate-in fade-in slide-in-from-top-1">
+                  <label className="block text-sm font-semibold text-black mb-2 font-univia">
+                    Company Website link / Portfolio link <span className="text-primary">*</span>
+                  </label>
+                  <input
+                    type="url"
+                    name="portfolio"
+                    placeholder="https://yourwebsite.com"
+                    value={formData.portfolio || ""}
+                    onChange={handleChange}
+                    className={`w-full px-4 py-3 bg-[#FAFAFA] border rounded-md text-black focus:outline-none transition-all font-montserrat ${errors.portfolio
+                      ? "border-red-500 focus:border-red-600 focus:ring-1 focus:ring-red-500"
+                      : "border-light-grey focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary/20 hover:border-black/20"
+                      }`}
+                  />
+                  {errors.portfolio && (
+                    <p className="text-red-500 text-xs mt-1 font-montserrat">{errors.portfolio}</p>
+                  )}
+                </div>
+              )}
 
               {/* Referral Source */}
               <div>

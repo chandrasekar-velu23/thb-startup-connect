@@ -27,8 +27,9 @@ export const registrationSchema = z.object({
       errorMap: () => ({ message: "Please select what best describes you" }),
     }
   ),
-  linkedin: z.string().url("Please enter a valid URL").optional().or(z.literal("")),
+  linkedin: z.string().url("Please enter a valid LinkedIn URL"),
   portfolio: z.string().url("Please enter a valid URL").optional().or(z.literal("")),
+  businessType: z.string(),
   referralSource: z.string().min(1, "Please select how you heard about us"),
   otherReferral: z.string().optional(),
   reason: z
@@ -43,6 +44,22 @@ export const registrationSchema = z.object({
 }, {
   message: "Please specify how you heard about us",
   path: ["otherReferral"],
+}).refine((data) => {
+  if (data.description === "I want to start a business" && (!data.businessType || data.businessType.trim() === "")) {
+    return false;
+  }
+  return true;
+}, {
+  message: "Please describe what kind of business you are looking for",
+  path: ["businessType"],
+}).refine((data) => {
+  if (data.description === "I already started but struggling" && (!data.portfolio || data.portfolio.trim() === "")) {
+    return false;
+  }
+  return true;
+}, {
+  message: "Please provide your company/portfolio link",
+  path: ["portfolio"],
 });
 
 export type RegistrationInput = z.infer<typeof registrationSchema>;

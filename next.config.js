@@ -1,5 +1,10 @@
+const isProd = process.env.NODE_ENV === 'production';
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Production-only base path for the specific event
+  basePath: isProd ? '/startup-connect/masterclasses-session-for-early-stage-entrepreneurs' : '',
+
   // Optimization
   swcMinify: true,
   compress: true,
@@ -44,7 +49,20 @@ const nextConfig = {
 
   // Redirects
   async redirects() {
-    return []
+    const redirects = [];
+    
+    // Redirect the root of the hosted domain to the official site in production
+    // This handles navigation or backward moves that exit the event sub-path
+    if (isProd) {
+      redirects.push({
+        source: '/',
+        destination: 'https://thehalfbrick.com',
+        permanent: false,
+        basePath: false, // Handle the domain root outside of our basePath
+      });
+    }
+
+    return redirects;
   },
 
   // Environment variables

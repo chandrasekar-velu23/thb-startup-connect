@@ -69,7 +69,7 @@ export default function FinalCTASection() {
               <p className="text-black text-lg">
                 If not, you can skip.
               </p>
-              <p className="text-black text-sm">
+              <p className="text-black font-univia font-light text-2xl">
                 But think carefully. How much longer can you stay confused?
               </p>
             </div>

@@ -62,6 +62,7 @@ export async function sendAdminNotification(
   description: string,
   linkedin: string,
   portfolio: string,
+  businessType: string | undefined,
   referralSource: string,
   otherReferral: string | undefined,
   reason: string
@@ -74,9 +75,9 @@ export async function sendAdminNotification(
       email,
       phone,
       currentStatus,
-      description,
+      businessType ? `${description} (${businessType})` : description,
       linkedin,
-      portfolio,
+      portfolio || "Not provided",
       referralSource,
       otherReferral,
       reason

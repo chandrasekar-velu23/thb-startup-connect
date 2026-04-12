@@ -34,7 +34,7 @@ export default function Navbar() {
               onClick={() => window.dispatchEvent(new Event("open-registration"))}
               className="shadow-md text-[11px] px-3 py-1.5 sm:text-sm whitespace-nowrap"
             >
-              Apply Now
+              Register Now
             </Button>
           </div>
         </div>
