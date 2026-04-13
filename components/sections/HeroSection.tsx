@@ -12,11 +12,11 @@ export default function HeroSection() {
 
   const slides = [
     {
-      bgDesktop: '/images/hero-bg.jpeg',
+      bgDesktop: '/images/bg-1.png',
       bgMobile: '/images/hero-bg-ph-1.png',
     },
     {
-      bgDesktop: '/images/bg-1.png',
+      bgDesktop: '/images/hero-bg.png',
       bgMobile: '/images/bg1-ph-1.png',
     }
   ];
