@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     title: "Startup is the New Trap (Free MasterClass)",
     description:
       "Learn how to build a Self-Sustainable Business, Brick by Brick. on May 3rd, 2026.",
-    url: "https://events.thehalfbrick.com/startup-connect",
+    url: "https://events.thehalfbrick.com/startup-connect/startup-is-the-new-trap-free-masterclass",
     images: [
       {
         url: "https://events.thehalfbrick.com/images/hero-cover.png",
