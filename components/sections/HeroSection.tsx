@@ -16,7 +16,7 @@ export default function HeroSection() {
       bgMobile: '/images/hero-bg-ph-1.png',
     },
     {
-      bgDesktop: '/images/hero-bg.png',
+      bgDesktop: '/images/hero-bg.jpeg',
       bgMobile: '/images/bg1-ph-1.png',
     }
   ];
