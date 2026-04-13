@@ -37,19 +37,19 @@ const univia = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Startup Connect | Master Class on Building Sustainable Businesses",
+  title: "Startup Connect | Free Master Class on Building Self-Sustainable Businesses",
   description:
     "Join the closed-door masterclass on May 3rd, 2026. Learn how to build self-sustainable businesses. Limited seats available.",
   keywords:
     "startup, business, entrepreneur, masterclass, sustainable business",
   openGraph: {
-    title: "Startup Connect - Master Class",
+    title: "Startup is the New Trap (Free MasterClass)",
     description:
       "Learn to build sustainable businesses without chasing hype. May 3rd, 2026.",
     url: "",
     images: [
       {
-        url: "./images/hero-bg.jpeg",
+        url: "./images/hero-cover.png",
         width: 1200,
         height: 630,
       },
