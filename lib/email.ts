@@ -63,7 +63,7 @@ export async function sendConfirmationEmail(
     return await sendMailWithRetry({
       from: SMTP_USER,
       to: email,
-      subject: "Confirm Your Attendance - The Half Brick Masterclass",
+      subject: "Application Received – Startup Connect Masterclass | The Half Brick",
       html,
     });
   } catch (error) {
