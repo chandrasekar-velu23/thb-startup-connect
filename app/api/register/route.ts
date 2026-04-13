@@ -67,23 +67,29 @@ export async function POST(request: NextRequest) {
     // Optimized Path: Return response IMMEDIATELY after sheet sync
     const confirmationLink = `${process.env.NEXT_PUBLIC_APP_URL}/confirm/${registrationId}`;
 
-    // Fire and forget emails (The user won't wait for these to finish)
-    Promise.all([
-      sendConfirmationEmail(body.email, body.name, confirmationLink, body.currentStatus),
-      sendAdminNotification(
-        body.name,
-        body.email,
-        body.phone,
-        body.currentStatus,
-        body.description,
-        body.linkedin,
-        body.portfolio,
-        body.businessType,
-        body.referralSource || "Internal",
-        body.otherReferral || "",
-        body.reason
-      ),
-    ]).catch(err => console.error("Background Email Error:", err));
+    // Await emails to ensure delivery before the function terminates (critical for serverless)
+    try {
+      await Promise.all([
+        sendConfirmationEmail(body.email, body.name, confirmationLink, body.currentStatus),
+        sendAdminNotification(
+          body.name,
+          body.email,
+          body.phone,
+          body.currentStatus,
+          body.description,
+          body.linkedin,
+          body.portfolio,
+          body.businessType,
+          body.referralSource || "Internal",
+          body.otherReferral || "",
+          body.reason
+        ),
+      ]);
+    } catch (emailError) {
+      console.error("Non-blocking Email Error (User still registered):", emailError);
+      // We don't want to fail the whole request if only emails failed, 
+      // but we log it for admin investigation.
+    }
 
     return NextResponse.json(
       {

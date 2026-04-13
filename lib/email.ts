@@ -9,11 +9,14 @@ const {
   APP_URL,
 } = process.env;
 
-// Create a transporter instance
+// Create a transporter instance with connection pooling
 const transporter = nodemailer.createTransport({
   host: SMTP_HOST,
   port: parseInt(SMTP_PORT || "587"),
   secure: SMTP_PORT === "465", // true for 465, false for other ports
+  pool: true, // maintain persistent connections
+  maxConnections: 5,
+  maxMessages: 100,
   auth: {
     user: SMTP_USER,
     pass: SMTP_PASSWORD,
@@ -25,9 +28,27 @@ transporter.verify(function (error, success) {
   if (error) {
     console.error("SMTP connection error:", error);
   } else if (success) {
-    console.log("SMTP server is ready to send emails");
+    console.log("SMTP server is ready to send emails (Pool enabled)");
   }
 });
+
+/**
+ * Robust email sending wrapper with retry logic
+ */
+async function sendMailWithRetry(mailOptions: nodemailer.SendMailOptions, retries = 3) {
+  for (let i = 0; i < retries; i++) {
+    try {
+      const info = await transporter.sendMail(mailOptions);
+      console.log(`Email sent successfully: ${info.messageId} (Attempt ${i + 1})`);
+      return { success: true, messageId: info.messageId };
+    } catch (error) {
+      console.error(`Attempt ${i + 1} failed sending email to ${mailOptions.to}:`, error);
+      if (i === retries - 1) throw error; // Re-throw if it was the last attempt
+      // Exponential backoff
+      await new Promise((resolve) => setTimeout(resolve, Math.pow(2, i) * 1000));
+    }
+  }
+}
 
 export async function sendConfirmationEmail(
   email: string,
@@ -37,19 +58,16 @@ export async function sendConfirmationEmail(
 ) {
   try {
     const { confirmationEmailTemplate } = await import("./emailTemplates");
-
     const html = confirmationEmailTemplate(name, confirmationLink, currentStatus);
 
-    await transporter.sendMail({
+    return await sendMailWithRetry({
       from: SMTP_USER,
       to: email,
       subject: "Confirm Your Attendance - The Half Brick Masterclass",
       html,
     });
-
-    return { success: true };
   } catch (error) {
-    console.error("Error sending confirmation email:", error);
+    console.error("Critical: Failed to send confirmation email after retries:", error);
     return { success: false, error };
   }
 }
@@ -83,16 +101,14 @@ export async function sendAdminNotification(
       reason
     );
 
-    await transporter.sendMail({
+    return await sendMailWithRetry({
       from: SMTP_USER,
       to: ADMIN_EMAIL,
       subject: `New Registration: ${name}`,
       html,
     });
-
-    return { success: true };
   } catch (error) {
-    console.error("Error sending admin notification:", error);
+    console.error("Critical: Failed to send admin notification after retries:", error);
     return { success: false, error };
   }
 }

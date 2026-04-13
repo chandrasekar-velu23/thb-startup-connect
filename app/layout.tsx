@@ -37,6 +37,7 @@ const univia = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://events.thehalfbrick.com"),
   title: "Startup Connect | Free Master Class on Building Self-Sustainable Businesses",
   description:
     "Join the closed-door masterclass on May 3rd, 2026. Learn how to build self-sustainable businesses. Limited seats available.",
@@ -44,16 +45,28 @@ export const metadata: Metadata = {
     "startup, business, entrepreneur, masterclass, sustainable business",
   openGraph: {
     title: "Startup is the New Trap (Free MasterClass)",
-    description:
-      "Learn how to build a Self-Sustainable Business, Brick by Brick. on May 3rd, 2026.",
-    url: "https://events.thehalfbrick.com/startup-connect/startup-is-the-new-trap-free-masterclass",
+    description: "Learn how to build a Self-Sustainable Business, Brick by Brick. on May 3rd, 2026.",
+    url: "/startup-connect/startup-is-the-new-trap-free-masterclass",
+    siteName: "Startup Connect",
     images: [
       {
-        url: "https://events.thehalfbrick.com/images/hero-cover.png",
+        // NOTE: bg-cover.png is currently ~3.3MB. 
+        // For best results on WhatsApp/LinkedIn, this image SHOULD BE UNDER 300KB.
+        url: "https://events.thehalfbrick.com/images/bg-cover.png", 
         width: 1200,
         height: 630,
+        alt: "Startup Connect Masterclass Thumbnail",
       },
     ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Startup is the New Trap (Free MasterClass)",
+    description: "Learn how to build a Self-Sustainable Business, Brick by Brick. on May 3rd, 2026.",
+    images: ["https://events.thehalfbrick.com/images/bg-cover.png"],
+    creator: "@TheHalfBrick",
   },
   themeColor: "#C92515",
 };
