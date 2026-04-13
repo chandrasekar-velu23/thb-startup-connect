@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Startup is the New Trap (Free MasterClass)",
     description: "Learn how to build a Self-Sustainable Business, Brick by Brick. on May 3rd, 2026.",
-    url: "/startup-connect/startup-is-the-new-trap-free-masterclass",
+    url: "/startup-connect/startup-is-the-new-trap-masterclass-free",
     siteName: "Startup Connect",
     images: [
       {
