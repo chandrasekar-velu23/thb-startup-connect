@@ -8,7 +8,7 @@ import TargetAudienceSection from "../../../components/sections/TargetAudienceSe
 import WhyMattersSection from "../../../components/sections/WhyMattersSection";
 import UrgencySection from "../../../components/sections/UrgencySection";
 import FinalCTASection from "../../../components/sections/FinalCTASection";
-import AnnouncementModal from "../../../components/common/AnnouncementModal";
+// import AnnouncementModal from "../../../components/common/AnnouncementModal";
 import Navbar from "../../../components/common/Navbar";
 
 export default function EventPage() {
@@ -18,7 +18,7 @@ export default function EventPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-950 via-blue-900/10 to-slate-950">
       <Navbar />
-      <AnnouncementModal />
+      {/* <AnnouncementModal /> */}
       {/* Hero Section - Above the fold */}
       <HeroSection />
 

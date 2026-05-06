@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, useEffect } from "react";
 import { X } from "lucide-react";
 
@@ -41,22 +42,22 @@ export default function AnnouncementModal() {
         {/* Bottom CTA Section */}
         <div className="p-5 flex flex-col items-center bg-white border-t border-light-grey/50">
           <p className="font-bold text-[#333333] font-univia mb-4 text-sm tracking-wide">
-            Join us for this upcoming event!
+            The application has been closed.
+          </p>
+          <p className="text-sm text-slate-600 text-center font-montserrat mb-4">
+            New registrations are not being accepted at this time. Check the next available events below.
           </p>
 
-          <div className="flex w-full gap-3">
-            <button
-              onClick={() => {
-                setIsOpen(false);
-                window.dispatchEvent(new Event('open-registration'));
-              }}
-              className="flex-1 bg-[#D7282F] hover:bg-[#B92228] text-white font-semibold py-2.5 px-4 rounded-md transition-colors font-montserrat shadow-sm text-sm"
+          <div className="flex w-full flex-col sm:flex-row gap-3">
+            <Link
+              href="/events"
+              className="flex-1 bg-[#D7282F] hover:bg-[#B92228] text-white font-semibold py-2.5 px-4 rounded-md transition-colors font-montserrat shadow-sm text-sm text-center"
             >
-              Register Now
-            </button>
+              See Upcoming Events
+            </Link>
             <button
               onClick={() => setIsOpen(false)}
-              className="bg-[#F5F5F5] hover:bg-[#EAEAEA] text-[#333333] font-semibold py-2.5 px-6 rounded-md transition-colors font-montserrat text-sm border border-black/5"
+              className="flex-1 bg-[#F5F5F5] hover:bg-[#EAEAEA] text-[#333333] font-semibold py-2.5 px-6 rounded-md transition-colors font-montserrat text-sm border border-black/5"
             >
               Close
             </button>

@@ -25,6 +25,9 @@ export default function Navbar() {
           <Link href="https://www.thehalfbrick.com/" className="text-black font-univia hover:text-primary transition-colors text-sm md:text-base font-medium">
             Home
           </Link>
+          <Link href="/events" className="text-black font-univia hover:text-primary transition-colors text-sm md:text-base font-medium">
+            Events
+          </Link>
 
           {/* CTA Button - Hidden on mobile */}
           <div className="hidden sm:block">

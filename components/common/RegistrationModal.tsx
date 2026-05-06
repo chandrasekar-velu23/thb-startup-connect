@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { z } from "zod";
 import { CheckCircle2, X } from "lucide-react";
 import Button from "./Button";
@@ -60,6 +61,7 @@ export default function RegistrationModal({
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
   const [currentBg, setCurrentBg] = useState(0);
+  const registrationClosed = true;
 
   const modalSlides = [
     {
@@ -205,7 +207,33 @@ export default function RegistrationModal({
           </div>
 
           {/* Content */}
-          {submitted ? (
+          {registrationClosed ? (
+            <div className="p-8 md:p-12 space-y-6 flex flex-col items-center justify-center text-center h-full min-h-[50vh]">
+              <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                <X className="w-8 h-8 text-red-600" />
+              </div>
+              <h3 className="text-3xl font-bold text-black font-univia tracking-tight">
+                The application has been closed.
+              </h3>
+              <p className="text-base text-grey max-w-xl mx-auto font-montserrat leading-relaxed">
+                We are no longer accepting new registrations for this session. Please check the upcoming events list for the next available programs.
+              </p>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                <Link href="/events" className="w-full sm:w-auto">
+                  <Button size="lg" variant="primary" className="w-full">
+                    See Upcoming Events
+                  </Button>
+                </Link>
+                <button
+                  type="button"
+                  onClick={onClose}
+                  className="w-full sm:w-auto px-6 py-3 rounded-lg border border-slate-300 text-slate-900 bg-white hover:bg-slate-50 transition-colors font-semibold"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          ) : submitted ? (
             <div className="p-8 md:p-12 space-y-6 flex flex-col items-center justify-center text-center h-full min-h-[50vh]">
               <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2 animate-bounce-slow">
                 <CheckCircle2 className="w-10 h-10 text-primary" strokeWidth={2.5} />
