@@ -32,7 +32,7 @@ export default function FinalCTASection() {
               </p>
             </div>
 
-            {/* Details */}
+{/*             
             <div className="bg-white rounded-xl p-8 md:p-12 border border-light-grey space-y-6 hover:border-primary/30 transition-all duration-300 hover:shadow-md">
               <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
                 <div className="text-center">
@@ -62,7 +62,7 @@ export default function FinalCTASection() {
                   </p>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             {/* Final message */}
             <div className="space-y-4 pt-6">
