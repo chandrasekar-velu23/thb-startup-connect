@@ -4,7 +4,7 @@ export const BUSINESS_STAGES = {
   revenue: "Getting revenue",
   scaled: "Already scaled",
 } as const;
-
+   
 export const EVENT_DETAILS = {
   date: "Sunday, May 3rd, 2026",
   time: "6:00 PM – 7:30 PM IST",
