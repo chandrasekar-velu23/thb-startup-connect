@@ -45,14 +45,14 @@ export function confirmationEmailTemplate(
           
           <p>Dear ${name},</p>
           
-          <p>Thank you for your application to the <strong>Startup Connect Masterclass</strong> conducted by <strong>The Half Brick</strong>.</p>
+          <p>Thank you for your interest in our masterclass program.</p>
           
-          <p>We are pleased to confirm that your application has been successfully received. Our team is currently reviewing all submissions to curate a highly relevant cohort of early-stage founders and student entrepreneurs.</p>
+          <p>Your application has been successfully received. Our team is currently reviewing all submissions to ensure the best learning experience for all participants.</p>
           
-          <p>As seats for this session are limited, participants will be selected based on alignment with the program objectives. You will receive an update on your application status shortly, along with further details if selected.</p>
+          <p>Once our team reviews your profile, you will receive confirmation of the masterclass to access the session shortly.</p>
     
         
-          <p>We appreciate your interest in learning with <strong>The Half Brick</strong> and look forward to the possibility of having you join us.</p>
+          <p>We appreciate your interest and look forward to the possibility of having you join us.</p>
           
           <div class="signature">
             Best Regards,<br>
@@ -83,14 +83,13 @@ export function adminNotificationTemplate(
   name: string,
   email: string,
   phone: string,
-  currentStatus: string,
-  description: string,
+  interests: string,
+  challenge: string,
   linkedin: string,
-  portfolio: string,
   referralSource: string,
   otherReferral: string | undefined,
   reason: string,
-  businessIdea?: string
+  college: string
 ): string {
   const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://thehalfbrick.com";
 
@@ -120,13 +119,12 @@ export function adminNotificationTemplate(
         <div class="row"><div class="label">Name</div><div class="value">${name}</div></div>
         <div class="row"><div class="label">Email</div><div class="value">${email}</div></div>
         <div class="row"><div class="label">Phone</div><div class="value">${phone}</div></div>
+        <div class="row"><div class="label">College/University</div><div class="value">${college}</div></div>
         
         <div class="section-title">Professional Context</div>
-        <div class="row"><div class="label">Current Status</div><div class="value">${currentStatus}</div></div>
-        <div class="row"><div class="label">Objective</div><div class="value">${description}</div></div>
-        ${businessIdea ? `<div class="row"><div class="label">Business Idea</div><div class="value">${businessIdea}</div></div>` : ''}
-        <div class="row"><div class="label">LinkedIn</div><div class="value"><a href="${linkedin}">${linkedin}</a></div></div>
-        <div class="row"><div class="label">Portfolio</div><div class="value"><a href="${portfolio}">${portfolio}</a></div></div>
+        <div class="row"><div class="label">Interests</div><div class="value">${interests}</div></div>
+        <div class="row"><div class="label">Biggest Challenge</div><div class="value">${challenge}</div></div>
+        <div class="row"><div class="label">LinkedIn</div><div class="value">${linkedin || "Not provided"}</div></div>
         
         <div class="section-title">Marketing & Intent</div>
         <div class="row"><div class="label">Attribution</div><div class="value">${referralSource}${referralSource === 'Other' && otherReferral ? `: ${otherReferral}` : ''}</div></div>

@@ -15,27 +15,34 @@ export const registrationSchema = z.object({
       (val) => !val || /^[0-9\s\-\+\(\)]+$/.test(val),
       "Phone number must contain only numbers and common phone symbols"
     ),
-  currentStatus: z.enum(
-    ["Student", "Working Professional", "Founder", "Exploring"],
+  college: z
+    .string()
+    .min(1, "College/University is required")
+    .max(200, "College name must be less than 200 characters"),
+  interests: z.enum(
+    ["Startup Ideas", "Founder Mindset", "Personal Branding", "Freelancing", "Business Growth"],
     {
-      errorMap: () => ({ message: "Please select your current status" }),
+      errorMap: () => ({ message: "Please select what interests you most" }),
     }
   ),
-  description: z.enum(
-    ["I want to start a business", "I already started but struggling", "Just exploring"],
+  challenge: z.enum(
+    ["Lack of Clarity", "Fear of Failure", "No Guidance", "No Team", "Don't Know Where to Start"],
     {
-      errorMap: () => ({ message: "Please select what best describes you" }),
+      errorMap: () => ({ message: "Please select your biggest challenge" }),
     }
   ),
-  linkedin: z.string().min(1, "LinkedIn URL is required").regex(/^(https?:\/\/)?(www\.)?linkedin\.com\/.+/i, "Please enter a valid LinkedIn profile URL"),
-  portfolio: z.string().optional().or(z.literal("")),
-  businessType: z.string().optional(),
-  referralSource: z.string().min(1, "Please select how you heard about us"),
-  otherReferral: z.string().optional(),
   reason: z
     .string()
     .min(5, "Please provide a short reason")
     .max(500, "Must be less than 500 characters"),
+  linkedin: z.string().min(1, "LinkedIn profile is required").regex(/^(https?:\/\/)?(www\.)?linkedin\.com\/.+/i, "Please enter a valid LinkedIn profile URL"),
+  referralSource: z.enum(
+    ["Instagram", "WhatsApp", "Friend", "College Community", "LinkedIn", "Other"],
+    {
+      errorMap: () => ({ message: "Please select how you heard about us" }),
+    }
+  ),
+  otherReferral: z.string().optional().or(z.literal(""))
 }).refine((data) => {
   if (data.referralSource === "Other" && (!data.otherReferral || !data.otherReferral.trim())) {
     return false;
@@ -44,22 +51,6 @@ export const registrationSchema = z.object({
 }, {
   message: "Please specify how you heard about us",
   path: ["otherReferral"],
-}).refine((data) => {
-  if (data.description === "I want to start a business" && (!data.businessType || !data.businessType.trim())) {
-    return false;
-  }
-  return true;
-}, {
-  message: "Please describe what kind of business you are looking for",
-  path: ["businessType"],
-}).refine((data) => {
-  if (data.description === "I already started but struggling" && (!data.portfolio || !data.portfolio.trim())) {
-    return false;
-  }
-  return true;
-}, {
-  message: "Please provide your company/portfolio link",
-  path: ["portfolio"],
 });
 
 export type RegistrationInput = z.infer<typeof registrationSchema>;

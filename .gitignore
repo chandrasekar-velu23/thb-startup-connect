@@ -112,3 +112,7 @@ htmlcov/
 
 # Error logs
 error.log
+
+
+*.gs
+*.md

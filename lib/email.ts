@@ -76,14 +76,13 @@ export async function sendAdminNotification(
   name: string,
   email: string,
   phone: string,
-  currentStatus: string,
-  description: string,
+  interests: string,
+  challenge: string,
   linkedin: string,
-  portfolio: string,
-  businessType: string | undefined,
   referralSource: string,
   otherReferral: string | undefined,
-  reason: string
+  reason: string,
+  college: string
 ) {
   try {
     const { adminNotificationTemplate } = await import("./emailTemplates");
@@ -92,13 +91,13 @@ export async function sendAdminNotification(
       name,
       email,
       phone,
-      currentStatus,
-      businessType ? `${description} (${businessType})` : description,
+      interests,
+      challenge,
       linkedin,
-      portfolio || "Not provided",
       referralSource,
       otherReferral,
-      reason
+      reason,
+      college
     );
 
     return await sendMailWithRetry({

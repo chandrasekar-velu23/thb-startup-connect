@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { z } from "zod";
 import { CheckCircle2, X } from "lucide-react";
 import Button from "./Button";
@@ -10,38 +11,27 @@ const registrationSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Please enter a valid email"),
   phone: z.string().min(5, "Please enter a valid phone number").refine((val) => /^[0-9\s\-\+\(\)]+$/.test(val), "Invalid phone number format"),
-  currentStatus: z.enum(["Student", "Working Professional", "Founder", "Exploring"]),
-  description: z.enum(["I want to start a business", "I already started but struggling", "Just exploring"]),
-  linkedin: z.string().min(1, "LinkedIn URL is required").regex(/^(https?:\/\/)?(www\.)?linkedin\.com\/.+/i, "Please enter a valid LinkedIn profile URL"),
-  portfolio: z.string().optional().or(z.literal("")),
-  businessType: z.string().optional(),
-  referralSource: z.string().min(1, "Please select how you heard about us"),
-  otherReferral: z.string().optional(),
+  college: z.string().min(1, "College/University is required"),
+  interests: z.enum(["Startup Ideas", "Founder Mindset", "Personal Branding", "Freelancing", "Business Growth"], {
+    errorMap: () => ({ message: "Please select what interests you most" })
+  }),
+  challenge: z.enum(["Lack of Clarity", "Fear of Failure", "No Guidance", "No Team", "Don't Know Where to Start"], {
+    errorMap: () => ({ message: "Please select your biggest challenge" })
+  }),
   reason: z.string().min(5, "Please provide your reason").max(500, "Reason must be less than 500 characters"),
+  linkedin: z.string().min(1, "LinkedIn profile is required").regex(/^(https?:\/\/)?(www\.)?linkedin\.com\/.+/i, "Please enter a valid LinkedIn profile URL"),
+  referralSource: z.enum(["Instagram", "WhatsApp", "Friend", "College Community", "LinkedIn", "Other"], {
+    errorMap: () => ({ message: "Please select how you heard about us" })
+  }),
+  otherReferral: z.string().optional().or(z.literal(""))
 }).refine((data) => {
   if (data.referralSource === "Other" && (!data.otherReferral || !data.otherReferral.trim())) {
     return false;
-  }
+  } 
   return true;
 }, {
   message: "Please specify how you heard about us",
   path: ["otherReferral"],
-}).refine((data) => {
-  if (data.description === "I want to start a business" && (!data.businessType || !data.businessType.trim())) {
-    return false;
-  }
-  return true;
-}, {
-  message: "Please describe what kind of business you are looking for",
-  path: ["businessType"],
-}).refine((data) => {
-  if (data.description === "I already started but struggling" && (!data.portfolio || !data.portfolio.trim())) {
-    return false;
-  }
-  return true;
-}, {
-  message: "Please provide your company/portfolio link",
-  path: ["portfolio"],
 });
 
 type RegistrationForm = z.infer<typeof registrationSchema>;
@@ -61,7 +51,7 @@ export default function RegistrationModal({
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
   const [currentBg, setCurrentBg] = useState(0);
-  const registrationClosed = true;
+  const registrationClosed = false;
 
   const modalSlides = [
     {
@@ -191,7 +181,18 @@ export default function RegistrationModal({
         <div className="w-full md:w-7/12 lg:w-1/2 relative md:overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           {/* Header */}
           <div className="p-6 md:p-8 border-b border-light-grey bg-white/95 sticky top-0 z-[60] backdrop-blur-md flex justify-between items-start">
-            <div>
+            <div className="relative">
+              <div className="relative items-center gap-4 mb-4">
+                <span className="text-primary font-bold text-sm uppercase tracking-wider">EXCLUSIVE FOR</span>
+                <div className="relative h-16 w-full sm:w-[80%] max-w-[180px]">
+                  <Image
+                    src="/images/Crescent-Logo.png"
+                    alt="Crescent Logo"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+              </div>
               <h2 className="text-2xl font-bold text-black font-univia tracking-tight md:pr-8">Apply for Masterclass Access</h2>
               {!submitted && (
                 <p className="text-sm text-grey mt-2">This is a limited-seat session. We review registrations to ensure serious participants.</p>
@@ -239,20 +240,11 @@ export default function RegistrationModal({
                 <CheckCircle2 className="w-10 h-10 text-primary" strokeWidth={2.5} />
               </div>
               <h3 className="text-3xl font-bold text-black font-univia tracking-tight">
-                You're almost in.
+                Your application has been received
               </h3>
 
               <div className="bg-[#FAFAFA] border border-light-grey rounded-2xl p-6 text-left w-full space-y-4 shadow-sm">
-                <p className="text-black font-medium">If shortlisted, you will receive:</p>
-                <ul className="space-y-3">
-                  <li className="flex items-center gap-3 text-grey">
-                    <CheckCircle2 className="w-5 h-5 text-primary" /> Confirmation message
-                  </li>
-                  <li className="flex items-center gap-3 text-grey">
-                    <CheckCircle2 className="w-5 h-5 text-primary" /> Access link
-                  </li>
-                </ul>
-                <p className="text-black font-medium pt-2 border-t border-black/5">on WhatsApp / Email.</p>
+                <p className="text-black font-medium">Once our team reviews your profile, you will receive confirmation of the masterclass to access the session shortly.</p>
               </div>
             </div>
           ) : (
@@ -317,82 +309,83 @@ export default function RegistrationModal({
                 )}
               </div>
 
-              {/* Current Status */}
+              {/* College */}
               <div>
                 <label className="block text-sm font-semibold text-black mb-2 font-univia">
-                  Are you currently? <span className="text-primary">*</span>
+                  College/University <span className="text-primary">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="college"
+                  placeholder="Enter your college or university name"
+                  value={formData.college || ""}
+                  onChange={handleChange}
+                  className={`w-full px-4 py-3 bg-[#FAFAFA] border rounded-md text-black focus:outline-none transition-all font-montserrat ${errors.college
+                    ? "border-red-500 focus:border-red-600 focus:ring-1 focus:ring-red-500"
+                    : "border-light-grey focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary/20 hover:border-black/20"
+                    }`}
+                />
+                {errors.college && (
+                  <p className="text-red-500 text-xs mt-1 font-montserrat">{errors.college}</p>
+                )}
+              </div>
+
+              {/* What interests you most? */}
+              <div>
+                <label className="block text-sm font-semibold text-black mb-2 font-univia">
+                  What interests you most? <span className="text-primary">*</span>
                 </label>
                 <select
-                  name="currentStatus"
-                  value={formData.currentStatus || ""}
+                  name="interests"
+                  value={formData.interests || ""}
                   onChange={handleChange}
-                  className={`w-full px-4 py-3 bg-[#FAFAFA] border rounded-md text-black focus:outline-none transition-all font-montserrat ${errors.currentStatus
+                  className={`w-full px-4 py-3 bg-[#FAFAFA] border rounded-md text-black focus:outline-none transition-all font-montserrat ${errors.interests
                     ? "border-red-500 focus:border-red-600 focus:ring-1 focus:ring-red-500"
                     : "border-light-grey focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary/20 hover:border-black/20"
                     }`}
                 >
-                  <option value="" disabled className="text-mid-grey">Select your status</option>
-                  <option value="Student">Student</option>
-                  <option value="Working Professional">Working Professional</option>
-                  <option value="Founder">Founder</option>
-                  <option value="Exploring">Exploring</option>
+                  <option value="" disabled className="text-mid-grey">Select an option</option>
+                  <option value="Startup Ideas">Startup Ideas</option>
+                  <option value="Founder Mindset">Founder Mindset</option>
+                  <option value="Personal Branding">Personal Branding</option>
+                  <option value="Freelancing">Freelancing</option>
+                  <option value="Business Growth">Business Growth</option>
                 </select>
-                {errors.currentStatus && (
-                  <p className="text-red-500 text-xs mt-1 font-montserrat">{errors.currentStatus}</p>
+                {errors.interests && (
+                  <p className="text-red-500 text-xs mt-1 font-montserrat">{errors.interests}</p>
                 )}
               </div>
 
-              {/* Description */}
+              {/* Biggest Challenge Right Now */}
               <div>
                 <label className="block text-sm font-semibold text-black mb-2 font-univia">
-                  What best describes you? <span className="text-primary">*</span>
+                  Biggest Challenge Right Now <span className="text-primary">*</span>
                 </label>
                 <select
-                  name="description"
-                  value={formData.description || ""}
+                  name="challenge"
+                  value={formData.challenge || ""}
                   onChange={handleChange}
-                  className={`w-full px-4 py-3 bg-[#FAFAFA] border rounded-md text-black focus:outline-none transition-all font-montserrat ${errors.description
+                  className={`w-full px-4 py-3 bg-[#FAFAFA] border rounded-md text-black focus:outline-none transition-all font-montserrat ${errors.challenge
                     ? "border-red-500 focus:border-red-600 focus:ring-1 focus:ring-red-500"
                     : "border-light-grey focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary/20 hover:border-black/20"
                     }`}
                 >
-                  <option value="" disabled className="text-mid-grey">Select best description</option>
-                  <option value="I want to start a business">I want to start a business</option>
-                  <option value="I already started but struggling">I already started but struggling</option>
-                  <option value="Just exploring">Just exploring</option>
+                  <option value="" disabled className="text-mid-grey">Select your challenge</option>
+                  <option value="Lack of Clarity">Lack of Clarity</option>
+                  <option value="Fear of Failure">Fear of Failure</option>
+                  <option value="No Guidance">No Guidance</option>
+                  <option value="No Team">No Team</option>
+                  <option value="Don't Know Where to Start">Don't Know Where to Start</option>
                 </select>
-                {errors.description && (
-                  <p className="text-red-500 text-xs mt-1 font-montserrat">{errors.description}</p>
+                {errors.challenge && (
+                  <p className="text-red-500 text-xs mt-1 font-montserrat">{errors.challenge}</p>
                 )}
               </div>
 
-              {/* Business Type - Conditional */}
-              {formData.description === "I want to start a business" && (
-                <div className="animate-in fade-in slide-in-from-top-1">
-                  <label className="block text-sm font-semibold text-black mb-2 font-univia">
-                    Describe what kind of business you are looking for? <span className="text-primary">*</span>
-                  </label>
-                  <textarea
-                    name="businessType"
-                    placeholder="E.g. SaaS, E-commerce, Service-based, etc."
-                    value={formData.businessType || ""}
-                    onChange={handleChange}
-                    rows={2}
-                    className={`w-full px-4 py-3 bg-[#FAFAFA] border rounded-md text-black focus:outline-none transition-all resize-none font-montserrat ${errors.businessType
-                      ? "border-red-500 focus:border-red-600 focus:ring-1 focus:ring-red-500"
-                      : "border-light-grey focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary/20 hover:border-black/20"
-                      }`}
-                  />
-                  {errors.businessType && (
-                    <p className="text-red-500 text-xs mt-1 font-montserrat">{errors.businessType}</p>
-                  )}
-                </div>
-              )}
-
-              {/* LinkedIn URL */}
+              {/* LinkedIn Profile */}
               <div>
                 <label className="block text-sm font-semibold text-black mb-2 font-univia">
-                  LinkedIn Profile URL <span className="text-primary">*</span>
+                  LinkedIn Profile <span className="text-primary">*</span>
                 </label>
                 <input
                   type="text"
@@ -410,30 +403,7 @@ export default function RegistrationModal({
                 )}
               </div>
 
-              {/* Portfolio URL - Conditional */}
-              {formData.description === "I already started but struggling" && (
-                <div className="animate-in fade-in slide-in-from-top-1">
-                  <label className="block text-sm font-semibold text-black mb-2 font-univia">
-                    Company Website link / Portfolio link <span className="text-primary">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    name="portfolio"
-                    placeholder="yourwebsite.com"
-                    value={formData.portfolio || ""}
-                    onChange={handleChange}
-                    className={`w-full px-4 py-3 bg-[#FAFAFA] border rounded-md text-black focus:outline-none transition-all font-montserrat ${errors.portfolio
-                      ? "border-red-500 focus:border-red-600 focus:ring-1 focus:ring-red-500"
-                      : "border-light-grey focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary/20 hover:border-black/20"
-                      }`}
-                  />
-                  {errors.portfolio && (
-                    <p className="text-red-500 text-xs mt-1 font-montserrat">{errors.portfolio}</p>
-                  )}
-                </div>
-              )}
-
-              {/* Referral Source */}
+              {/* How did you hear about us? */}
               <div>
                 <label className="block text-sm font-semibold text-black mb-2 font-univia">
                   How did you hear about us? <span className="text-primary">*</span>
@@ -448,12 +418,11 @@ export default function RegistrationModal({
                     }`}
                 >
                   <option value="" disabled className="text-mid-grey">Select an option</option>
-                  <option value="LinkedIn">LinkedIn</option>
+                  <option value="Instagram">Instagram</option>
                   <option value="WhatsApp">WhatsApp</option>
-                  <option value="Friends">Friends of friends</option>
-                  {/* <option value="Word of Mouth">Word of Mouth</option> */}
-                  <option value="Website">Website</option>
-                  <option value="Google">Google</option>
+                  <option value="Friend">Friend</option>
+                  <option value="College Community">College Community</option>
+                  <option value="LinkedIn">LinkedIn</option>
                   <option value="Other">Other</option>
                 </select>
                 {errors.referralSource && (

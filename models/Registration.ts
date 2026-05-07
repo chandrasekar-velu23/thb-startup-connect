@@ -4,6 +4,7 @@ export interface IRegistration extends Document {
   name: string;
   email: string;
   phone: string;
+  college: string;
   currentStatus: "Student" | "Working Professional" | "Founder" | "Exploring";
   description: "I want to start a business" | "I already started but struggling" | "Just exploring";
   linkedin?: string;
@@ -25,7 +26,7 @@ const registrationSchema = new Schema<IRegistration>(
       trim: true,
       minlength: 2,
       maxlength: 100,
-    },
+    }, 
     email: {
       type: String,
       required: true,
@@ -35,6 +36,11 @@ const registrationSchema = new Schema<IRegistration>(
       match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
     },
     phone: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    college: {
       type: String,
       required: true,
       trim: true,

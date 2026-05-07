@@ -22,6 +22,7 @@ export async function POST(request: NextRequest) {
     const scriptUrl = process.env.GOOGLE_APPS_SCRIPT_URL;
     let registrationId = uuidv4(); // Generate a unique ID for session
     let existingUser = false;
+    const sheetName = "S2 - Participants List ";
 
     if (scriptUrl) {
       try {
@@ -30,7 +31,7 @@ export async function POST(request: NextRequest) {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ ...body, registrationId }),
+          body: JSON.stringify({ ...body, registrationId, sheetName }),
         });
 
         const result = await response.json();
@@ -70,19 +71,18 @@ export async function POST(request: NextRequest) {
     // Await emails to ensure delivery before the function terminates (critical for serverless)
     try {
       await Promise.all([
-        sendConfirmationEmail(body.email, body.name, confirmationLink, body.currentStatus),
+        sendConfirmationEmail(body.email, body.name, confirmationLink, body.interests),
         sendAdminNotification(
           body.name,
           body.email,
           body.phone,
-          body.currentStatus,
-          body.description,
+          body.interests,
+          body.challenge,
           body.linkedin,
-          body.portfolio,
-          body.businessType,
           body.referralSource || "Internal",
           body.otherReferral || "",
-          body.reason
+          body.reason,
+          body.college
         ),
       ]);
     } catch (emailError) {

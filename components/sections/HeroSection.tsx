@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 import Button from "@/components/common/Button";
 import Container from "@/components/common/Container";
@@ -12,7 +13,7 @@ export default function HeroSection() {
 
   const slides = [
     {
-      bgDesktop: '/images/bg-1.png',
+      bgDesktop: '/images/bg-1.png', 
       bgMobile: '/images/hero-bg-ph-1.png',
     },
     {
@@ -123,19 +124,25 @@ export default function HeroSection() {
               </div>
 
               {/* Quick Info Bar */}
-              <div className="flex flex-col sm:flex-row gap-6 bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-lg hover:shadow-xl transition-shadow w-full max-w-2xl mt-4 z-20 relative ">
-                <div className="flex-1">
-                  <p className="text-white/70 text-xs font-montserrat uppercase tracking-wider">DATE & TIME</p>
-                  <p className="text-white text-lg font-semibold font-univia mt-2">
-                    Sunday, May 3rd, 2026
-                  </p>
-                  <p className="text-white/70 text-sm font-montserrat mt-1">6:00 PM – 8:00 PM</p>
+              <div className="flex flex-col sm:flex-row gap-6 bg-white rounded-2xl px-6 py-4 border border-gray-200 shadow-md hover:shadow-lg transition-shadow w-full max-w-2xl mt-4 z-20 relative">
+                <div className="flex-1 text-center">
+                  <p className="text-black text-xs font-montserrat uppercase tracking-wider font-semibold">EXCLUSIVE FOR</p>
+                  <div className="mt-2 flex items-center justify-center">
+                    <div className="relative h-16 w-full sm:w-[80%] max-w-[180px]">
+                      <Image
+                        src="/images/Crescent-Logo.png"
+                        alt="Crescent Logo"
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                  </div>
                 </div>
-                <div className="hidden sm:block w-px bg-gradient-to-b from-transparent via-white/30 to-transparent"></div>
-                <div className="flex-1">
-                  <p className="text-white/70 text-xs font-montserrat uppercase tracking-wider">ACCESS</p>
-                  <p className="text-white text-lg font-semibold font-univia mt-2">Free Access</p>
-                  <p className="text-orange-300 text-sm font-medium font-montserrat mt-1">
+                <div className="hidden sm:block w-px bg-gradient-to-b from-transparent via-gray-300 to-transparent"></div>
+                <div className="flex-1 text-center">
+                  <p className="text-black text-xs font-montserrat uppercase tracking-wider font-semibold">ACCESS</p>
+                  <p className="text-black text-lg font-semibold font-univia mt-2">Free Access</p>
+                  <p className="text-primary text-sm font-semibold font-montserrat mt-1">
                     Limited Seats
                   </p>
                 </div>
