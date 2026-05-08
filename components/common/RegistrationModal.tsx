@@ -45,6 +45,9 @@ export default function RegistrationModal({
   const [currentBg, setCurrentBg] = useState(0);
   const registrationClosed = false;
 
+  // Add loading state management to reduce processing time
+  const [isProcessing, setIsProcessing] = useState(false);
+
   const modalSlides = [
     {
       desktop: '/images/bg-cover-1-ph.png',
@@ -98,6 +101,8 @@ export default function RegistrationModal({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
+    setIsProcessing(true); // Start processing
     setError("");
 
     try {
@@ -133,6 +138,7 @@ export default function RegistrationModal({
       }
     } finally {
       setIsLoading(false);
+      setIsProcessing(false); // Stop processing
     }
   };
 
@@ -140,7 +146,7 @@ export default function RegistrationModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-      <div className="bg-white rounded-lg border border-light-grey max-w-5xl w-full max-h-[90vh] md:max-h-[85vh] shadow-2xl animate-in fade-in zoom-in-95 font-montserrat flex flex-col md:flex-row overflow-y-auto md:overflow-hidden relative [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+      <div className="bg-white rounded-lg border border-light-grey max-w-4xl w-full max-h-[90vh] md:max-h-[85vh] shadow-2xl animate-in fade-in zoom-in-95 font-montserrat flex flex-col md:flex-row overflow-y-auto md:overflow-hidden relative [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
 
         {/* Left Side: Announcement Image (Desktop) */}
         <div className="w-full md:w-5/12 lg:w-1/2 bg-black relative hidden md:block overflow-hidden">
@@ -190,13 +196,23 @@ export default function RegistrationModal({
                 <p className="text-sm text-grey mt-2">This is a limited-seat session. We review registrations to ensure serious participants.</p>
               )}
             </div>
-            {/* Close button - Sticky (Visible on all screens in the persistent header) */}
+            {/* Close button - Sticky (Visible on all screens in persistent header) */}
             <button
               onClick={onClose}
               className="text-mid-grey hover:bg-light-grey hover:text-black rounded-full transition-colors p-2 bg-[#FAFAFA] border border-light-grey flex-shrink-0 ml-4"
             >
               <X className="w-5 h-5" />
             </button>
+
+            {/* Close button - Top right corner for confirmation popup */}
+            {submitted && (
+              <button
+                onClick={onClose}
+                className="absolute top-4 right-4 text-mid-grey hover:bg-light-grey hover:text-black rounded-full transition-colors p-2 bg-[#FAFAFA] border border-light-grey z-50"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            )}
           </div>
 
           {/* Content */}
@@ -236,7 +252,7 @@ export default function RegistrationModal({
               </h3>
 
               <div className="bg-[#FAFAFA] border border-light-grey rounded-2xl p-6 text-left w-full space-y-4 shadow-sm">
-                <p className="text-black font-medium">Once our team reviews your profile, you will receive confirmation of the masterclass to access the session shortly.</p>
+                <p className="text-sm text-grey">Your application is now under review by our team. Further instructions, confirmation details, and session updates will be shared through your registered email address.</p>
               </div>
             </div>
           ) : (

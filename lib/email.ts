@@ -63,7 +63,7 @@ export async function sendConfirmationEmail(
     return await sendMailWithRetry({
       from: SMTP_USER,
       to: email,
-      subject: "Application Received – Startup Connect Masterclass | The Half Brick",
+      subject: "Your application is now under review by our team",
       html,
     });
   } catch (error) {
