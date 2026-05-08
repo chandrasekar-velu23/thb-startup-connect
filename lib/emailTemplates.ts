@@ -86,8 +86,6 @@ export function adminNotificationTemplate(
   interests: string,
   challenge: string,
   linkedin: string,
-  // referralSource: string,
-  // otherReferral: string | undefined,
   reason: string,
   college: string
 ): string {
@@ -127,7 +125,6 @@ export function adminNotificationTemplate(
         <div class="row"><div class="label">LinkedIn</div><div class="value">${linkedin || "Not provided"}</div></div>
         
         <div class="section-title">Intent</div>
-        {/* <div class="row"><div class="label">Attribution</div><div class="value">${referralSource}${referralSource === 'Other' && otherReferral ? `: ${otherReferral}` : ''}</div></div> */}
         <div class="row"><div class="label">Reason for Attending</div><div class="value">${reason}</div></div>
         
         <div style="padding: 20px; text-align: center; background: #fafafa; font-size: 12px; color: #999;">
