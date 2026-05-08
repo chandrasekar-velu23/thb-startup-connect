@@ -20,18 +20,10 @@ const registrationSchema = z.object({
   }),
   reason: z.string().min(5, "Please provide your reason").max(500, "Reason must be less than 500 characters"),
   linkedin: z.string().min(1, "LinkedIn profile is required").regex(/^(https?:\/\/)?(www\.)?linkedin\.com\/.+/i, "Please enter a valid LinkedIn profile URL"),
-  referralSource: z.enum(["Instagram", "WhatsApp", "Friend", "College Community", "LinkedIn", "Other"], {
-    errorMap: () => ({ message: "Please select how you heard about us" })
-  }),
-  otherReferral: z.string().optional().or(z.literal(""))
-}).refine((data) => {
-  if (data.referralSource === "Other" && (!data.otherReferral || !data.otherReferral.trim())) {
-    return false;
-  } 
-  return true;
-}, {
-  message: "Please specify how you heard about us",
-  path: ["otherReferral"],
+  // referralSource: z.enum(["Instagram", "WhatsApp", "Friend", "College Community", "LinkedIn", "Other"], {
+  //   errorMap: () => ({ message: "Please select how you heard about us" })
+  // }),
+  // otherReferral: z.string().optional().or(z.literal(""))
 });
 
 type RegistrationForm = z.infer<typeof registrationSchema>;
@@ -403,8 +395,8 @@ export default function RegistrationModal({
                 )}
               </div>
 
-              {/* How did you hear about us? */}
-              <div>
+              {/* How did you hear about us? - COMMENTED OUT */}
+              {/* <div>
                 <label className="block text-sm font-semibold text-black mb-2 font-univia">
                   How did you hear about us? <span className="text-primary">*</span>
                 </label>
@@ -428,10 +420,10 @@ export default function RegistrationModal({
                 {errors.referralSource && (
                   <p className="text-red-500 text-xs mt-1 font-montserrat">{errors.referralSource}</p>
                 )}
-              </div>
+              </div> */}
 
-              {/* Other Referral Source - Conditional */}
-              {formData.referralSource === "Other" && (
+              {/* Other Referral Source - Conditional - COMMENTED OUT */}
+              {/* {formData.referralSource === "Other" && (
                 <div className="animate-in fade-in slide-in-from-top-1">
                   <label className="block text-sm font-semibold text-black mb-2 font-univia">
                     Please specify <span className="text-primary">*</span>
@@ -451,7 +443,7 @@ export default function RegistrationModal({
                     <p className="text-red-500 text-xs mt-1 font-montserrat">{errors.otherReferral}</p>
                   )}
                 </div>
-              )}
+              )} */}
 
               {/* Reason */}
               <div>

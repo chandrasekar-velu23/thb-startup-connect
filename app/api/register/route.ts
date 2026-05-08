@@ -79,8 +79,8 @@ export async function POST(request: NextRequest) {
           body.interests,
           body.challenge,
           body.linkedin,
-          body.referralSource || "Internal",
-          body.otherReferral || "",
+          // body.referralSource || "Internal",
+          // body.otherReferral || "",
           body.reason,
           body.college
         ),

@@ -36,21 +36,11 @@ export const registrationSchema = z.object({
     .min(5, "Please provide a short reason")
     .max(500, "Must be less than 500 characters"),
   linkedin: z.string().min(1, "LinkedIn profile is required").regex(/^(https?:\/\/)?(www\.)?linkedin\.com\/.+/i, "Please enter a valid LinkedIn profile URL"),
-  referralSource: z.enum(
-    ["Instagram", "WhatsApp", "Friend", "College Community", "LinkedIn", "Other"],
-    {
-      errorMap: () => ({ message: "Please select how you heard about us" }),
-    }
-  ),
-  otherReferral: z.string().optional().or(z.literal(""))
 }).refine((data) => {
-  if (data.referralSource === "Other" && (!data.otherReferral || !data.otherReferral.trim())) {
-    return false;
-  }
   return true;
 }, {
-  message: "Please specify how you heard about us",
-  path: ["otherReferral"],
+  message: "",
+  path: [],
 });
 
 export type RegistrationInput = z.infer<typeof registrationSchema>;
