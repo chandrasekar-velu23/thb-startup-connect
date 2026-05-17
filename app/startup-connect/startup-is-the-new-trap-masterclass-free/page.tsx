@@ -10,6 +10,8 @@ import UrgencySection from "../../../components/sections/UrgencySection";
 import FinalCTASection from "../../../components/sections/FinalCTASection";
 // import AnnouncementModal from "../../../components/common/AnnouncementModal";
 import Navbar from "../../../components/common/Navbar";
+// import Footer from "@/components/common/Footer";
+import Footer from "@/components/footer";
 
 export default function EventPage() {
   const params = useParams();
@@ -39,6 +41,8 @@ export default function EventPage() {
 
       {/* Final CTA */}
       <FinalCTASection />
+
+      <Footer />
     </div>
   );
 }

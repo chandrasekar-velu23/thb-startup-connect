@@ -1,0 +1,442 @@
+/* footer.css - Custom styles for The Half Brick Footer with UniviaPro and Montserrat */
+
+.thb-footer {
+  background-color: #ffffff;
+  padding: 80px 0 0 0;
+  font-family: var(--font-montserrat), sans-serif;
+  color: #1d1d1b;
+  width: 100%;
+}
+
+.thb-footer-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* Upper Footer Grid */
+.thb-footer-upper {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr 1.8fr;
+  gap: 40px;
+  padding-bottom: 60px;
+}
+
+@media (max-width: 1200px) {
+  .thb-footer-upper {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .thb-footer-upper {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    padding-bottom: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .thb-footer-upper {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+/* Logo Column */
+.thb-footer-logo-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.thb-footer-logo {
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.thb-footer-logo:hover {
+  transform: scale(1.02);
+}
+
+/* Links Columns */
+.thb-footer-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.thb-footer-heading {
+  font-family: var(--font-univia), var(--font-montserrat), sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 25px;
+  color: #1d1d1b;
+  margin-bottom: 20px;
+  letter-spacing: -0.5px;
+}
+
+.thb-footer-links-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.thb-footer-link {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
+  color: #1d1d1b;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+}
+
+.thb-footer-link:hover {
+  color: #cb2f1d;
+  transform: translateX(2px);
+}
+
+/* Talent Development Expandable */
+.thb-talent-toggle-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.thb-talent-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  cursor: pointer;
+  user-select: none;
+}
+
+.thb-talent-toggle span {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
+  color: #1d1d1b;
+}
+
+.thb-talent-toggle:hover span {
+  color: #cb2f1d;
+}
+
+.thb-talent-arrow-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: #1d1d1b;
+  transition: transform 0.3s ease;
+}
+
+.thb-talent-toggle-container.active .thb-talent-arrow-btn {
+  transform: rotate(180deg);
+}
+
+.thb-talent-submenu {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-left: 16px;
+  margin-top: 12px;
+  animation: slideDown 0.25s ease-out forwards;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Download App Pill Button */
+.thb-download-app-section {
+  margin-top: 24px;
+  width: 100%;
+}
+
+.thb-launching-soon-btn {
+  background-color: #1d1d1b;
+  color: #ffffff;
+  font-family: var(--font-univia), var(--font-montserrat), sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
+  border-radius: 50px;
+  padding: 10px 24px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  white-space: nowrap;
+}
+
+.thb-launching-soon-btn:hover {
+  background-color: #333333;
+  transform: scale(1.02);
+}
+
+.thb-launching-soon-btn:active {
+  transform: scale(0.98);
+}
+
+/* Right Section - Newsletter & Socials */
+.thb-footer-right-col {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.thb-newsletter-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.thb-newsletter-desc {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #555555;
+  margin-top: -8px;
+  margin-bottom: 16px;
+  line-height: 24px;
+}
+
+/* Input Form Box */
+.thb-newsletter-form {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border: 1.5px solid #1d1d1b;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 417px;
+  height: 50px;
+  padding: 3px;
+  position: relative;
+}
+
+.thb-newsletter-input-container {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  padding-left: 12px;
+  height: 100%;
+}
+
+.thb-newsletter-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  font-family: var(--font-montserrat), sans-serif;
+  color: #1d1d1b;
+  background: transparent;
+}
+
+.thb-newsletter-input::placeholder {
+  color: #8e8e8e;
+}
+
+.thb-newsletter-submit-btn {
+  background-color: #1d1d1b;
+  color: #ffffff;
+  font-family: var(--font-univia), var(--font-montserrat), sans-serif;
+  border: none;
+  border-radius: 4px;
+  height: 100%;
+  padding: 0 24px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.thb-newsletter-submit-btn:hover {
+  background-color: #cb2f1d;
+}
+
+.thb-newsletter-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.thb-newsletter-status {
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.thb-newsletter-status.success {
+  color: #2e7d32;
+}
+
+.thb-newsletter-status.error {
+  color: #d32f2f;
+}
+
+/* Social Section */
+.thb-social-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.thb-social-heading {
+  font-family: var(--font-univia), var(--font-montserrat), sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1d1d1b;
+  margin-bottom: 16px;
+}
+
+.thb-social-links {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.thb-social-link-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.thb-social-link-item:hover {
+  transform: scale(1.1);
+  opacity: 0.9;
+}
+
+/* Bottom Divider */
+.thb-footer-divider {
+  border: none;
+  border-top: 1.5px solid #1d1d1b;
+  margin: 0;
+  width: 100%;
+}
+
+/* Giant Bottom Links */
+.thb-giant-links-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 40px 0;
+  gap: 20px;
+  width: 100%;
+}
+
+@media (max-width: 992px) {
+  .thb-giant-links-row {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 32px 48px;
+  }
+}
+
+.thb-giant-link {
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+  position: relative;
+  display: inline-block;
+}
+
+.thb-giant-link:hover {
+  transform: translateY(-2px);
+}
+
+.thb-giant-link:active {
+  transform: scale(0.98);
+}
+
+.thb-giant-text {
+  font-family: var(--font-univia), var(--font-montserrat), sans-serif;
+  font-size: 56px;
+  font-weight: 900; /* Uses Black weight loaded via Next.js localFont loader */
+  line-height: 52.5px;
+  color: #1d1d1b;
+  letter-spacing: -1px;
+}
+
+@media (max-width: 1200px) {
+  .thb-giant-text {
+    font-size: 44px;
+    line-height: 42px;
+  }
+}
+
+@media (max-width: 576px) {
+  .thb-giant-text {
+    font-size: 36px;
+    line-height: 34px;
+  }
+}
+
+.thb-registered-symbol {
+  font-family: var(--font-univia), var(--font-montserrat), sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  vertical-align: super;
+  margin-left: 2px;
+}
+
+/* Copyright Bottom Bar */
+.thb-copyright-bar {
+  background-color: #1d1d1b;
+  color: #ffffff;
+  height: 99px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px 12px 0 0;
+  margin-top: 20px;
+  padding: 0 20px;
+}
+
+.thb-copyright-text {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 25px;
+  text-align: center;
+}
+
+.thb-copyright-text sup {
+  font-size: 12px;
+  vertical-align: super;
+  margin-left: 1px;
+}
+
+@media (max-width: 768px) {
+  .thb-copyright-bar {
+    height: auto;
+    padding: 24px 20px;
+  }
+  
+  .thb-copyright-text {
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
